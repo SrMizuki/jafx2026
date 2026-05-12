@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 192 80">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0 {
+        opacity: .33;
+      }
+
+      .st1 {
+        opacity: .85;
+      }
+
+      .st2 {
+        fill: #af0322;
+      }
+
+      .st3, .st4, .st5, .st6, .st7, .st8, .st9 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .st3, .st4, .st6 {
+        stroke-width: .5px;
+      }
+
+      .st3, .st8, .st9 {
+        stroke: #01ae7a;
+      }
+
+      .st4 {
+        stroke-dasharray: 1.96 1.96;
+      }
+
+      .st4, .st6, .st7 {
+        stroke: #fff;
+      }
+
+      .st5 {
+        stroke: #af0322;
+      }
+
+      .st5, .st7 {
+        stroke-linecap: round;
+        stroke-width: 2px;
+      }
+
+      .st10, .st11 {
+        font-family: NotoSans-Medium, 'Noto Sans';
+        font-size: 6px;
+        font-weight: 500;
+      }
+
+      .st10, .st12 {
+        fill: #fff;
+      }
+
+      .st11, .st13 {
+        fill: #01ae7a;
+      }
+
+      .st7, .st14, .st9 {
+        opacity: .5;
+      }
+
+      .st15 {
+        opacity: .66;
+      }
+
+      .st16 {
+        opacity: .2;
+      }
+
+      .st17 {
+        opacity: .1;
+      }
+    </style>
+  </defs>
+  <g class="st0">
+    <rect class="st1" width="110" height="40" rx="2" ry="2"/>
+    <g class="st14">
+      <text class="st10" transform="translate(6 32)"><tspan x="0" y="0">Exposure 0.62</tspan></text>
+    </g>
+    <g class="st16">
+      <path class="st12" d="M108,.5c.82,0,1.5.67,1.5,1.5v36.01c0,.82-.67,1.5-1.5,1.5H2c-.82,0-1.5-.67-1.5-1.5V2c0-.82.67-1.5,1.5-1.5h106.01M108,0H2C.89,0,0,.89,0,2v36.01c0,1.1.89,2,2,2h106.01c1.1,0,2-.89,2-2V2c0-1.1-.89-2-2-2h0Z"/>
+    </g>
+    <g>
+      <text class="st10" transform="translate(8 11)"><tspan x="0" y="0">RISK SNAPSHOT</tspan></text>
+      <rect class="st2" x="6" y="6" width="1" height="6"/>
+    </g>
+    <line class="st7" x1="7.5" y1="20" x2="102" y2="20"/>
+    <line class="st5" x1="7.5" y1="20" x2="66" y2="20"/>
+  </g>
+  <g class="st15">
+    <rect class="st1" x="41" y="20" width="110" height="40" rx="2" ry="2"/>
+    <g class="st16">
+      <path class="st12" d="M149,20.5c.83,0,1.5.67,1.5,1.5v36c0,.83-.67,1.5-1.5,1.5H43c-.83,0-1.5-.67-1.5-1.5V22c0-.83.67-1.5,1.5-1.5h106M149,20H43c-1.1,0-2,.89-2,2v36c0,1.1.89,2,2,2h106c1.1,0,2-.89,2-2V22c0-1.1-.89-2-2-2h0Z"/>
+    </g>
+    <g>
+      <text class="st10" transform="translate(49 31)"><tspan x="0" y="0">MACRO NOTE • 45 MIN</tspan></text>
+      <rect class="st13" x="47" y="26" width="1" height="6"/>
+    </g>
+    <g>
+      <circle class="st8" cx="50" cy="45" r="5"/>
+      <polyline class="st9" points="50 41.67 50 45 51.39 46.39"/>
+    </g>
+    <line class="st7" x1="59.5" y1="40" x2="96.5" y2="40"/>
+    <line class="st7" x1="59.5" y1="45" x2="139" y2="45"/>
+    <line class="st7" x1="59.5" y1="50" x2="120" y2="50"/>
+  </g>
+  <g>
+    <rect class="st1" x="82" y="40" width="110" height="40" rx="2" ry="2"/>
+    <polyline class="st3" points="82 76.5 93 73.5 104 74.5 115 68.5 126 67.5 137 70.5 148 61.5 159 60.5 170 54.5 181 51.5 192 45.5"/>
+    <g class="st17">
+      <g>
+        <line class="st6" x1="192" y1="66" x2="191" y2="66"/>
+        <line class="st4" x1="189.04" y1="66" x2="83.98" y2="66"/>
+        <line class="st6" x1="83" y1="66" x2="82" y2="66"/>
+      </g>
+    </g>
+    <g class="st16">
+      <path class="st12" d="M190,40.5c.83,0,1.5.67,1.5,1.5v36c0,.83-.67,1.5-1.5,1.5h-106c-.83,0-1.5-.67-1.5-1.5v-36c0-.83.67-1.5,1.5-1.5h106M190,40h-106c-1.11,0-2,.9-2,2v36c0,1.11.9,2,2,2h106c1.11,0,2-.9,2-2v-36c0-1.11-.9-2-2-2h0Z"/>
+    </g>
+    <g>
+      <text class="st11" transform="translate(90 51)"><tspan x="0" y="0">TRADE PLAN • EUR/USD </tspan></text>
+      <rect class="st13" x="88" y="46" width="1" height="6"/>
+    </g>
+  </g>
+</svg>

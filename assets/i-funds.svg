@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2 {
+        fill: none;
+      }
+
+      .st3 {
+        clip-path: url(#clippath-1);
+      }
+
+      .st1 {
+        stroke: #af0322;
+        stroke-miterlimit: 10;
+      }
+
+      .st1, .st2 {
+        stroke-width: 2px;
+      }
+
+      .st2 {
+        stroke: #01ae7a;
+        stroke-linejoin: bevel;
+      }
+
+      .st4 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <path class="st0" d="M63.45,25.94l-19.73-9.87h-.89L5.55,34.71v1.79l1.5.75-1.5.75v1.79l1.5.75-1.5.75v1.79l1.5.75-1.5.75v1.79l19.73,9.87h.89l37.27-18.63v-1.79l-1.5-.75,1.5-.75v-1.79l-1.5-.75,1.5-.75v-1.79l-1.5-.75,1.5-.75v-1.79Z"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <polygon class="st0" points="0 7.95 0 56.15 25.13 56.15 5.55 46.37 5.55 44.58 7.05 43.83 5.55 43.08 5.55 41.29 7.05 40.54 5.55 39.79 5.55 38 7.05 37.25 5.55 36.5 5.55 34.71 42.82 16.08 43.72 16.08 63.45 25.94 63.45 27.73 61.95 28.48 63.45 29.23 63.45 31.02 61.95 31.77 63.45 32.52 63.45 34.31 61.95 35.06 63.45 35.81 63.45 37.6 26.33 56.15 64 56.15 64 7.95 0 7.95"/>
+    </clipPath>
+  </defs>
+  <g>
+    <polyline class="st2" points="47.65 41.09 63 33.41 59.71 31.77"/>
+    <polyline class="st2" points="9.29 40.54 6 42.18 25.73 52.05 43.27 43.28"/>
+    <polyline class="st2" points="9.29 43.83 6 45.47 25.73 55.34 63 36.7 59.71 35.06"/>
+    <polyline class="st2" points="47.65 37.8 63 30.13 59.71 28.48"/>
+    <polyline class="st2" points="9.29 37.25 6 38.89 25.73 48.76 43.27 39.99"/>
+    <polygon class="st2" points="6 35.61 25.73 45.47 63 26.84 43.27 16.97 6 35.61"/>
+    <g class="st4">
+      <g>
+        <polyline class="st1" points="25.13 23.25 47.65 34.51 47.65 46.15"/>
+        <polyline class="st1" points="20.88 25.51 43.27 36.7 43.27 48.15"/>
+      </g>
+    </g>
+  </g>
+  <g class="st3">
+    <g>
+      <g>
+        <ellipse class="st2" cx="8" cy="12.15" rx="7" ry="3"/>
+        <path class="st2" d="M15,12.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,15.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,18.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,21.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,24.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,27.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,30.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,33.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,36.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M15,39.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+      </g>
+      <g>
+        <ellipse class="st2" cx="22" cy="19.15" rx="7" ry="3"/>
+        <path class="st2" d="M29,19.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,22.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,25.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,28.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,31.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,34.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,37.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,40.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,43.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+        <path class="st2" d="M29,46.15v3c0,1.66-3.13,3-7,3s-7-1.34-7-3v-3"/>
+      </g>
+    </g>
+  </g>
+</svg>

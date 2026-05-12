@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>Pricing — JAFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>(function(){try{const t=localStorage.getItem('jafx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="components/shared.jsx"></script>
+<script type="text/babel" src="components/sections.jsx"></script>
+<script type="text/babel" src="components/feature-showcase.jsx"></script>
+<style>@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }</style>
+<script type="text/babel">
+function PricingPage() {
+  const tiers = [
+    { name: 'Standard', sub: 'Spread-only. Perfect to start.', price: '$0', priceL: 'min deposit', feats: [
+      'Spreads from 1.0 pip (EUR/USD)', '$0 commission', 'Leverage up to 1:200', 'Full AI Copilot access', 'Auto-journal + coaching', 'MT5 + Web + Mobile', 'Demo account, forever',
+    ], cta: 'Open Standard', featured: false },
+    { name: 'Raw', sub: 'ECN pricing. For active traders.', price: '$200', priceL: 'min deposit', feats: [
+      'Spreads from 0.0 pip (raw)', '$3.50 commission / lot / side', 'Leverage up to 1:500', 'All AI features + priority', 'Signals + risk engine', 'MT5, cTrader, API', 'VPS included over $5k',
+    ], cta: 'Open Raw', featured: true },
+    { name: 'Pro', sub: 'Institutional. By application.', price: '$25k', priceL: 'min deposit', feats: [
+      'Raw spreads + $2.00/lot', 'FIX 4.4 + allocated LPs', 'Custom leverage agreements', 'Dedicated AI fine-tuning', 'Multi-account management', 'Dedicated support line', 'Swap-free on request',
+    ], cta: 'Apply', featured: false },
+  ];
+  return (
+    <>
+      <Nav current="pricing"/>
+      <section className="zone zone-funding" style={{ padding: '80px 0 60px' }}>
+        <div className="wrap">
+          <div className="eyebrow" style={{ marginBottom: 20 }}><span style={{ color: 'var(--za)' }}>●</span>&nbsp;&nbsp;Pricing</div>
+          <h1 className="display" style={{ fontSize: 'clamp(48px, 7vw, 88px)', margin: 0, maxWidth: 1100 }}>
+            One price. No surprises.<br/>AI included in every tier.
+          </h1>
+          <p style={{ color: 'var(--text-1)', fontSize: 18, lineHeight: 1.55, maxWidth: 620, marginTop: 24 }}>
+            We don't widen spreads during news. We don't hide fees in the swap rate. We won't upsell the AI — it ships with every account.
+          </p>
+        </div>
+      </section>
+      <section className="zone zone-funding zone-flip" style={{ padding: '0 0 80px' }}>
+        <div className="wrap">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: '1px solid var(--line-strong)', borderRadius: 12, overflow: 'hidden', background: 'var(--bg-1)' }}>
+            {tiers.map((t, i) => (
+              <div key={t.name} style={{
+                padding: '44px 36px',
+                borderRight: i < 2 ? '1px solid var(--line)' : 'none',
+                background: t.featured ? 'linear-gradient(to bottom, rgba(0, 230, 160,0.10), transparent)' : 'transparent',
+                position: 'relative'
+              }}>
+                {t.featured && <div style={{ position: 'absolute', top: 16, right: 16 }}>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: '0.14em', padding: '4px 8px', color: '#1a1206', background: 'var(--zone-funding)', borderRadius: 3 }}>MOST TRADERS</span>
+                </div>}
+                <div className="display" style={{ fontSize: 32 }}>{t.name}</div>
+                <p style={{ color: 'var(--text-2)', fontSize: 13, margin: '6px 0 28px' }}>{t.sub}</p>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 28 }}>
+                  <span className="display" style={{ fontSize: 48 }}>{t.price}</span>
+                  <span className="mono" style={{ fontSize: 11, color: 'var(--text-3)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{t.priceL}</span>
+                </div>
+                <div style={{ borderTop: '1px solid var(--line)', paddingTop: 20, marginBottom: 24 }}>
+                  {t.feats.map(f => (
+                    <div key={f} style={{ display: 'flex', gap: 10, fontSize: 13, color: 'var(--text-1)', padding: '7px 0', lineHeight: 1.4 }}>
+                      <span style={{ color: 'var(--zone-funding)', flexShrink: 0 }}>✓</span>
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href="trader.html" className={t.featured ? 'btn btn-primary' : 'btn btn-ghost'} style={{ width: '100%', justifyContent: 'center' }}>{t.cta} <span className="btn-arrow" aria-hidden="true">→</span></a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Section eyebrow="Fine print" title="No surprises. Ever." intro="Everything we charge, and some things we don't.">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0, border: '1px solid var(--line)', borderRadius: 10, overflow: 'hidden' }}>
+          {[
+            ['Deposit fees', 'Zero — we absorb processor costs.'],
+            ['Withdrawal fees', 'Zero — one free withdrawal per day.'],
+            ['Inactivity fees', 'Zero — your account, your pace.'],
+            ['AI feature fees', 'Zero — included in every tier.'],
+            ['Swap rates', 'Published hourly. No hidden markup.'],
+            ['Slippage', 'Tracked and reported on every fill.'],
+          ].map(([k, v], i) => (
+            <div key={k} style={{ padding: '22px 28px', borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none', borderBottom: i < 4 ? '1px solid var(--line)' : 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--bg-1)' }}>
+              <span style={{ fontSize: 14, color: 'var(--text-1)' }}>{k}</span>
+              <span className="mono" style={{ fontSize: 13, color: 'var(--zone-funding)' }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <FeatureStrip/>
+      <CtaBand zone="funding"/>
+      <Footer/>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<PricingPage/>);
+</script>
+</body>
+</html>

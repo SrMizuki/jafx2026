@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>AI Copilot — JAFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>(function(){try{const t=localStorage.getItem('jafx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="components/shared.jsx"></script>
+<script type="text/babel" src="components/hero.jsx"></script>
+<script type="text/babel" src="components/ai-features.jsx"></script>
+<script type="text/babel" src="components/sections.jsx"></script>
+<script type="text/babel" src="components/feature-showcase.jsx"></script>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+function CopilotDemo() {
+  const [msgs, setMsgs] = useState([
+    { r: 'ai', t: "I'm your JAFX Copilot. Ask me about a pair, a setup, or your risk. Try: 'Is EUR/USD a buy?'" },
+  ]);
+  const [input, setInput] = useState('');
+  const [typing, setTyping] = useState(false);
+  const endRef = useRef();
+  useEffect(() => { endRef.current?.scrollIntoView({block:'end'}); }, [msgs, typing]);
+
+  const respond = (q) => {
+    const lower = q.toLowerCase();
+    let reply = "Let me pull that. One moment.";
+    if (/eur\/?usd|euro/.test(lower)) reply = "EUR/USD at 1.08472. 4H range 1.0832–1.0865. DXY rolling over; bias leans long above 1.0836. If you want a long: entry 1.08680, stop 1.08420, target 1.09200 = 2.0R. Want me to size it?";
+    else if (/gbp/.test(lower)) reply = "Cable at 1.26340. News-heavy day (UK CPI at 09:30). I'd sit out until data prints. After the spike, I'll flag clean setups.";
+    else if (/gold|xau/.test(lower)) reply = "Gold up 0.67% to 2348.12. Bullish continuation above 2345. Target 2362, stop 2338. Confidence 78% — strong macro tailwind (real yields rolling over).";
+    else if (/btc|bitcoin/.test(lower)) reply = "BTC 67,842. In a trending phase. I wouldn't chase here — wait for a 1H pullback to 67,200. Caveat: weekend liquidity is thin.";
+    else if (/risk|size/.test(lower)) reply = "On your $10,000 account and 0.5% risk rule: max loss per trade = $50. For EUR/USD long (entry 1.0868, stop 1.0842 = 26 pips): size is 0.19 lots. I'll set it up if you say go.";
+    else if (/hello|hi|hey/.test(lower)) reply = "Ready when you are. Try asking about a specific pair, or say 'show me setups'.";
+    else if (/setup|ideas?/.test(lower)) reply = "Top 3 setups right now: 1) GBP/JPY long (87% conf, 2.4R), 2) XAU/USD short (74% conf, 1.8R), 3) AUD/USD long (68% conf, 1.5R). Want details?";
+    else if (/journal|performance/.test(lower)) reply = "Last 30 days: 42 trades, 58% win rate, +18.4%. Your best setups are London-open trend days. Worst: Monday revenge trades after a loss. Want the drill?";
+    else reply = "I'm trained on the JAFX markets, your account, and 14 years of tick data. Try asking about a pair, a setup, or your risk.";
+    return reply;
+  };
+
+  const send = () => {
+    if (!input.trim()) return;
+    const q = input.trim();
+    setMsgs(m => [...m, { r: 'user', t: q }]);
+    setInput('');
+    setTyping(true);
+    setTimeout(() => {
+      setMsgs(m => [...m, { r: 'ai', t: respond(q) }]);
+      setTyping(false);
+    }, 700);
+  };
+
+  const quick = ['Is EUR/USD a buy?', 'Show me setups', 'Size 0.5% risk', 'Review my journal'];
+
+  return (
+    <div style={{ border: '1px solid var(--line-strong)', borderRadius: 12, overflow: 'hidden', background: 'var(--bg-1)', maxWidth: 920, margin: '0 auto' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', borderBottom: '1px solid var(--line)', background: 'var(--bg-2)' }}>
+        <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--accent)', color: '#000', display: 'grid', placeItems: 'center', fontSize: 11, fontWeight: 700 }}>AI</div>
+        <div>
+          <div style={{ fontSize: 13, color: 'var(--text-0)' }}>JAFX Copilot</div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--accent)' }}><span className="live-dot"/> &nbsp;online · 14ms</div>
+        </div>
+      </div>
+      <div style={{ padding: 24, minHeight: 420, maxHeight: 480, overflowY: 'auto', background: 'var(--bg-0)' }}>
+        {msgs.map((m, i) => (
+          <div key={i} style={{ display: 'flex', gap: 12, marginBottom: 18, flexDirection: m.r === 'user' ? 'row-reverse' : 'row' }}>
+            <div style={{ width: 26, height: 26, flexShrink: 0, borderRadius: '50%',
+              background: m.r === 'ai' ? 'var(--accent)' : 'var(--bg-3)',
+              color: m.r === 'ai' ? '#000' : 'var(--text-1)',
+              display: 'grid', placeItems: 'center', fontSize: 10, fontWeight: 700 }}>
+              {m.r === 'ai' ? 'AI' : 'YOU'}
+            </div>
+            <div style={{
+              maxWidth: '75%',
+              background: m.r === 'ai' ? 'var(--bg-2)' : 'rgba(0,229,153,0.08)',
+              border: m.r === 'ai' ? '1px solid var(--line)' : '1px solid var(--accent)',
+              padding: '12px 16px', borderRadius: 8, fontSize: 14, color: 'var(--text-0)', lineHeight: 1.55
+            }}>{m.t}</div>
+          </div>
+        ))}
+        {typing && (
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+            <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'var(--accent)', color: '#000', display: 'grid', placeItems: 'center', fontSize: 10, fontWeight: 700 }}>AI</div>
+            <div className="mono" style={{ fontSize: 12, color: 'var(--text-2)' }}>thinking<span style={{animation:'pulse-dot 1s infinite'}}>...</span></div>
+          </div>
+        )}
+        <div ref={endRef}/>
+      </div>
+      <div style={{ padding: 12, borderTop: '1px solid var(--line)', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {quick.map(q => (
+          <button key={q} onClick={() => { setInput(q); setTimeout(send, 50); }} style={{ padding: '6px 12px', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-1)', background: 'var(--bg-0)', border: '1px solid var(--line)', borderRadius: 4, cursor: 'pointer' }}>{q}</button>
+        ))}
+      </div>
+      <div style={{ display: 'flex', padding: 12, borderTop: '1px solid var(--line)', gap: 10, background: 'var(--bg-1)' }}>
+        <input
+          value={input}
+          onChange={e=>setInput(e.target.value)}
+          onKeyDown={e=>e.key==='Enter' && send()}
+          placeholder="Ask the copilot anything…"
+          style={{ flex: 1, background: 'var(--bg-0)', border: '1px solid var(--line)', color: 'var(--text-0)', padding: '12px 14px', borderRadius: 6, fontFamily: 'var(--font-body)', fontSize: 14, outline: 'none' }}
+        />
+        <button onClick={send} className="btn btn-primary">Send <span className="btn-arrow" aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  );
+}
+
+function CopilotShowcase({ align = 'right' }) {
+  return (
+    <section id="tool-01" style={{ padding: 'clamp(64px, 9vw, 112px) 0', borderTop: '1px solid var(--line)', position: 'relative' }}>
+      <div className="wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: align === 'left' ? '1fr 1.3fr' : '1.3fr 1fr', gap: 48, alignItems: 'center' }}>
+          <div style={{ order: align === 'right' ? 2 : 0 }} data-reveal>
+            <div className="mono" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.18em', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 9, opacity: 0.6 }}>01</span>
+              <span style={{ width: 24, height: 1, background: 'var(--accent)' }}/>
+              <span>COPILOT CHAT</span>
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(38px, 4.4vw, 56px)', margin: 0, lineHeight: 1 }}>
+              Talk to the<br/>
+              <em style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 300 }}>Copilot.</em>
+            </h2>
+            <p style={{ color: 'var(--text-1)', fontSize: 17, lineHeight: 1.55, marginTop: 24, maxWidth: 480 }}>
+              Ask about any pair. Get a read, a setup, a size, and a risk plan — in plain English. No signup needed; the demo on the right is live.
+            </p>
+            <div style={{ marginTop: 36, display: 'flex', flexDirection: 'column', gap: 14, maxWidth: 480 }}>
+              {[
+                ['Pair-aware', 'Knows current price, ATR, session, and macro context for every pair on JAFX.'],
+                ['Account-aware', 'Reads your balance, open risk, and journal — sizing factors them in automatically.'],
+                ['Always cited', 'Every claim links back to the data that produced it. No black-box answers.'],
+              ].map(([k, v]) => (
+                <div key={k} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: 16, paddingTop: 12, borderTop: '1px solid var(--line)' }}>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: '0.14em', color: 'var(--accent)', textTransform: 'uppercase' }}>● {k.toUpperCase()}</span>
+                  <div style={{ fontSize: 13, color: 'var(--text-1)', lineHeight: 1.5 }}>{v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ order: align === 'right' ? 1 : 2 }}>
+            <CopilotDemo/>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AiPage() {
+  return (
+    <>
+      <Nav current="ai"/>
+      <section className="zone zone-intel" style={{ padding: 'clamp(80px, 12vw, 140px) 0 clamp(60px, 8vw, 100px)', position: 'relative', overflow: 'hidden' }}>
+        <NeuralBg/>
+        <div className="wrap" style={{ position: 'relative' }}>
+          <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--za)', letterSpacing: '0.2em', marginBottom: 24, textAlign: 'center' }}>
+            <span className="live-dot" style={{ background: 'var(--za)', boxShadow: '0 0 10px var(--za)' }}/>&nbsp;&nbsp;THE AI LAYER
+          </div>
+          <h1 className="display" data-reveal style={{ fontSize: 'clamp(56px, 9vw, 128px)', margin: 0, textAlign: 'center', lineHeight: 0.95, letterSpacing: '-0.02em' }}>
+            An AI that trades<br/>
+            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 300 }}>alongside you</span>.
+          </h1>
+          <p data-reveal style={{ color: 'var(--text-1)', fontSize: 'clamp(16px, 1.4vw, 20px)', lineHeight: 1.55, maxWidth: 720, margin: '32px auto 0', textAlign: 'center' }}>
+            Six tools woven into the terminal. Ask, plan, size, execute, monitor, review — all without leaving the chart. Trained on 14 years of tick data and your own journal.
+          </p>
+          <div data-reveal-stagger style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 48, maxWidth: 880, marginInline: 'auto' }}>
+            {[
+              { k: '01', t: 'Copilot Chat' },
+              { k: '02', t: 'Canvas' },
+              { k: '03', t: 'AI Order Ticket' },
+              { k: '04', t: 'Live Position Coach' },
+              { k: '05', t: 'Proactive Nudges' },
+              { k: '06', t: 'Thread Memory' },
+            ].map(p => (
+              <a key={p.k} href={`#tool-${p.k}`} className="mono" style={{
+                fontSize: 11, color: 'var(--text-1)', letterSpacing: '0.12em',
+                padding: '10px 14px', border: '1px solid var(--line)', borderRadius: 999,
+                textDecoration: 'none', background: 'var(--bg-1)', display: 'inline-flex', gap: 10, alignItems: 'center'
+              }}>
+                <span style={{ color: 'var(--za)' }}>{p.k}</span>
+                <span>{p.t}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+      <CopilotShowcase align="right"/>
+      <CanvasShowcase align="left"/>
+      <TicketShowcase align="right"/>
+      <PositionShowcase align="left"/>
+      <NudgeShowcase align="right"/>
+      <StackedShowcase align="left"/>
+      <AiFeatures/>
+      <CtaBand zone="intel"/>
+      <Footer/>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<AiPage/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>Focus list — explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="app/trader.css?v=3">
+<link rel="stylesheet" href="app/workspace-v2.css?v=1">
+<style>
+  html, body { height: 100%; background: var(--trader-bg); margin: 0; overflow: hidden; }
+  body { font-family: var(--font-body); color: var(--text-0); }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="app/design-canvas.jsx"></script>
+<script type="text/babel" src="app/focus-explorations.jsx"></script>
+<script type="text/babel" src="app/focus-grouped.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function ExplorationsPage() {
+  return (
+    <DesignCanvas title="Focus list — explorations" subtitle="V1 heatmap winners + asset-class grouping variations">
+      <DCSection id="grouped-variations" title="Heatmap + asset-class grouping" subtitle="Four ways to combine V1 rows with class splits">
+        <DCArtboard id="g1-accordion" label="G1 · Classic Accordion" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusG1_Accordion/>
+          </div>
+        </DCArtboard>
+        <DCArtboard id="g2-tabs" label="G2 · Tab Bar + Heatmap" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusG2_Tabs/>
+          </div>
+        </DCArtboard>
+        <DCArtboard id="g3-sticky" label="G3 · Sticky Sections" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusG3_Sticky/>
+          </div>
+        </DCArtboard>
+        <DCArtboard id="g4-rail" label="G4 · Class Rail + List" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusG4_Rail/>
+          </div>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="bold-variations" title="Earlier explorations" subtitle="The original 4 — V1 was the pick">
+        <DCArtboard id="v1-heatmap" label="V1 · Heatmap List" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusV1_Heatmap/>
+          </div>
+        </DCArtboard>
+        <DCArtboard id="v2-pulse" label="V2 · Signal Pulse" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusV2_Pulse/>
+          </div>
+        </DCArtboard>
+        <DCArtboard id="v3-stack" label="V3 · Card Stack" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusV3_Stack/>
+          </div>
+        </DCArtboard>
+        <DCArtboard id="v4-matrix" label="V4 · Conviction Matrix" width={296} height={740}>
+          <div style={{ padding: 8, background: 'var(--trader-bg)', height: '100%', boxSizing: 'border-box' }}>
+            <FocusV4_Matrix/>
+          </div>
+        </DCArtboard>
+      </DCSection>
+
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ExplorationsPage/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "JAFX",
+  "short_name": "JAFX",
+  "description": "AI-native forex broker",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050607",
+  "theme_color": "#050607",
+  "icons": [
+    {
+      "src": "assets/ico.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/ico.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

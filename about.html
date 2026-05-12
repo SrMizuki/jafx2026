@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>About — JAFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>(function(){try{const t=localStorage.getItem('jafx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="components/shared.jsx"></script>
+<script type="text/babel" src="components/sections.jsx"></script>
+<script type="text/babel">
+function AboutPage() {
+  return (
+    <>
+      <Nav current="about"/>
+      <section className="zone zone-momentum" style={{ padding: '96px 0 72px' }}>
+        <div className="wrap">
+          <div className="eyebrow" style={{ marginBottom: 20 }}><span style={{ color: 'var(--za)' }}>●</span>&nbsp;&nbsp;About</div>
+          <h1 className="display" style={{ fontSize: 'clamp(56px, 7vw, 96px)', margin: 0, maxWidth: 1100 }}>
+            Retail traders deserve<br/>institutional tools.<br/>We just built them.
+          </h1>
+          <p style={{ color: 'var(--text-1)', fontSize: 19, lineHeight: 1.55, maxWidth: 620, marginTop: 32 }}>
+            JAFX was founded in 2024 by a group of ex-hedge-fund quants and retail traders who were tired of watching brokers treat their clients like marks. We built the first AI-native forex broker — for adults, regulated, and transparent.
+          </p>
+        </div>
+      </section>
+      <Section eyebrow="Numbers" title="Where we stand.">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, border: '1px solid var(--line)', borderRadius: 10, overflow: 'hidden' }}>
+          {[
+            ['2024', 'Founded'],
+            ['42k+', 'Active traders'],
+            ['$2.1B', 'Monthly volume'],
+            ['14ms', 'Median execution'],
+          ].map(([n, l], i) => (
+            <div key={l} style={{ padding: 36, borderRight: i < 3 ? '1px solid var(--line)' : 'none', background: 'var(--bg-1)' }}>
+              <div className="display" style={{ fontSize: 52 }}>{n}</div>
+              <div className="mono" style={{ fontSize: 10, color: 'var(--text-2)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: 10 }}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section eyebrow="Principles" title="What we won't do.">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0 }}>
+          {[
+            ['No B-book.', "We don't trade against you. Every order is routed to tier-1 liquidity."],
+            ['No gamification.', 'No streaks, badges, or "unlock premium lots." Trading isn\'t a video game.'],
+            ['No hidden swaps.', 'Swap rates are published hourly. What you see is what you pay.'],
+            ['No withdrawal friction.', 'One free withdrawal daily. Funds leave within 24 hours, guaranteed.'],
+            ['No fake bonuses.', "We don't inflate deposits with terms you'll never meet."],
+            ['No upselling AI.', 'The Copilot is included. Always. For every account.'],
+          ].map(([h, d], i) => (
+            <div key={h} style={{ padding: '28px 32px', borderTop: '1px solid var(--line)', borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none' }}>
+              <div className="display" style={{ fontSize: 26, color: 'var(--text-0)' }}>{h}</div>
+              <p style={{ color: 'var(--text-1)', fontSize: 15, lineHeight: 1.55, marginTop: 10, marginBottom: 0 }}>{d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <Section eyebrow="Regulation" title="Licensed. Insured. Audited.">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '1px solid var(--line)', borderRadius: 10, overflow: 'hidden' }}>
+          <div style={{ padding: 44, borderRight: '1px solid var(--line)', background: 'var(--bg-1)' }}>
+            <div className="mono" style={{ fontSize: 11, color: 'var(--accent)', letterSpacing: '0.14em' }}>● PRIMARY REGULATOR</div>
+            <div className="display" style={{ fontSize: 40, marginTop: 16 }}>FSCA</div>
+            <p style={{ color: 'var(--text-1)', fontSize: 14, lineHeight: 1.55, marginTop: 12 }}>
+              JAFX Capital (Pty) Ltd is an authorised Financial Services Provider (FSP 51243), regulated by the Financial Sector Conduct Authority of South Africa.
+            </p>
+            <div className="mono" style={{ fontSize: 11, color: 'var(--text-2)', marginTop: 24, lineHeight: 1.7 }}>
+              JAFX CAPITAL (PTY) LTD<br/>
+              2024/145892/07<br/>
+              Sandton, Johannesburg
+            </div>
+          </div>
+          <div style={{ padding: 44, background: 'var(--bg-1)' }}>
+            <div className="mono" style={{ fontSize: 11, color: 'var(--accent)', letterSpacing: '0.14em' }}>● SAFEGUARDS</div>
+            <div style={{ marginTop: 16 }}>
+              {[
+                ['Client fund segregation', 'Standard Bank, tier-1'],
+                ['Negative balance protection', 'All retail accounts'],
+                ['Excess-of-regulation insurance', '$1M per account'],
+                ['Audited annually', 'KPMG'],
+              ].map(([k, v]) => (
+                <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--line)', alignItems: 'center' }}>
+                  <span style={{ fontSize: 14, color: 'var(--text-0)' }}>{k}</span>
+                  <span className="mono" style={{ fontSize: 12, color: 'var(--text-1)' }}>{v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+      <CtaBand zone="momentum"/>
+      <Footer/>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<AboutPage/>);
+</script>
+</body>
+</html>

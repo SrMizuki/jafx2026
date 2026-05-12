@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>Markets — JAFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>(function(){try{const t=localStorage.getItem('jafx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="components/shared.jsx"></script>
+<script type="text/babel" src="components/hero.jsx"></script>
+<script type="text/babel" src="components/sections.jsx"></script>
+<script type="text/babel">
+const { useState: useStateMk, useEffect: useEffectMk } = React;
+
+const ASSET_CLASSES = [
+  {
+    id: 'forex', tag: 'FOREX', count: '70+', accent: 'var(--accent)',
+    title: 'Forex',
+    sub: 'Majors, minors, exotics — the deepest pool on JAFX.',
+    spread: 'from 0.0 pips',
+    leverage: 'up to 1:500',
+    hours: '24 / 5',
+    pairs: [
+      ['EUR/USD', 1.08472, +0.24], ['GBP/USD', 1.26340, -0.08], ['USD/JPY', 156.842, +0.31], ['AUD/USD', 0.66482, +0.12],
+      ['USD/CAD', 1.36742, -0.18], ['NZD/USD', 0.61227, +0.04], ['EUR/GBP', 0.85847, -0.03], ['USD/CHF', 0.90134, -0.21],
+      ['EUR/JPY', 170.20, +0.55], ['GBP/JPY', 198.47, +0.31], ['CHF/JPY', 174.12, +0.28], ['AUD/JPY', 104.30, +0.42],
+    ],
+  },
+  {
+    id: 'indices', tag: 'INDICES', count: '24', accent: 'var(--accent)',
+    title: 'Indices',
+    sub: 'Cash CFDs on the world\u2019s benchmark equity indices.',
+    spread: 'from 0.4 pts',
+    leverage: 'up to 1:200',
+    hours: 'Cash + futures',
+    pairs: [
+      ['US500', 5247.30, +0.42], ['US30', 39812.10, +0.31], ['NAS100', 18520.40, +0.78], ['UK100', 8190.20, -0.12],
+      ['GER40', 18540.80, +0.55], ['FRA40', 8120.40, -0.08], ['JPN225', 39120.00, +1.10], ['HK50', 18420.30, -0.40],
+      ['AUS200', 7782.40, +0.18], ['ESP35', 11240.50, -0.22], ['EUSTX50', 5018.20, +0.32], ['VIX', 12.84, -2.10],
+    ],
+  },
+  {
+    id: 'commodities', tag: 'COMMODITIES', count: '18', accent: '#ffb24a',
+    title: 'Commodities',
+    sub: 'Spot metals, energy, and softs \u2014 quoted against USD.',
+    spread: 'from 0.10',
+    leverage: 'up to 1:200',
+    hours: '23 / 5',
+    pairs: [
+      ['XAU/USD', 2348.12, +0.67], ['XAG/USD', 28.42, +1.18], ['WTI/USD', 78.40, -0.42], ['BRENT', 82.10, -0.31],
+      ['NATGAS', 2.84, +2.40], ['XPT/USD', 920.50, +0.22], ['XPD/USD', 1018.40, -0.85], ['COPPER', 4.512, +0.32],
+      ['COCOA', 11240, +1.45], ['COFFEE', 245.20, +0.42], ['SUGAR', 21.42, -0.20], ['CORN', 432.10, +0.18],
+    ],
+  },
+  {
+    id: 'crypto', tag: 'CRYPTO CFDS', count: '12', accent: 'var(--accent)',
+    title: 'Crypto CFDs',
+    sub: 'Trade BTC, ETH and the majors as CFDs \u2014 24/7, no wallet, no custody risk.',
+    spread: 'from 0.10%',
+    leverage: 'up to 1:20',
+    hours: '24 / 7',
+    pairs: [
+      ['BTC/USD', 67842.0, -0.88], ['ETH/USD', 3482.40, -0.42], ['SOL/USD', 168.40, +1.85], ['XRP/USD', 0.5240, +0.32],
+      ['ADA/USD', 0.4720, -0.18], ['DOGE/USD', 0.1580, +2.10], ['DOT/USD', 7.84, -0.55], ['LINK/USD', 18.40, +0.42],
+      ['AVAX/USD', 38.20, +1.20], ['MATIC/USD', 0.7240, -0.32], ['LTC/USD', 92.40, -0.18], ['BCH/USD', 482.10, +0.42],
+    ],
+  },
+  {
+    id: 'stocks', tag: 'STOCKS', count: '300+', accent: '#7fd97a',
+    title: 'Stocks',
+    sub: 'US, UK, EU and Asian listings as CFDs. Fractional sizing, dividend adjustments handled automatically.',
+    spread: 'from 0.05%',
+    leverage: 'up to 1:20',
+    hours: 'Exchange hours',
+    pairs: [
+      ['AAPL', 184.20, +0.42], ['MSFT', 412.40, +0.18], ['NVDA', 920.40, +2.85], ['TSLA', 178.40, -1.20],
+      ['GOOGL', 152.40, +0.32], ['AMZN', 182.40, +0.55], ['META', 484.20, +0.78], ['JPM', 198.40, -0.18],
+      ['BRK.B', 408.40, +0.12], ['V', 268.40, +0.22], ['WMT', 60.40, -0.08], ['XOM', 112.40, +0.42],
+    ],
+  },
+];
+
+function MarketsHero() {
+  return (
+    <section className="zone zone-intel" style={{ padding: 'clamp(80px, 12vw, 140px) 0 clamp(40px, 6vw, 80px)', position: 'relative', overflow: 'hidden' }}>
+      <NeuralBg/>
+      <div className="wrap" style={{ position: 'relative' }}>
+        <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--za)', letterSpacing: '0.2em', marginBottom: 24, textAlign: 'center' }}>
+          <span className="live-dot" style={{ background: 'var(--za)', boxShadow: '0 0 10px var(--za)' }}/>&nbsp;&nbsp;MARKETS
+        </div>
+        <h1 className="display" data-reveal style={{ fontSize: 'clamp(56px, 9vw, 128px)', margin: 0, textAlign: 'center', lineHeight: 0.95, letterSpacing: '-0.02em' }}>
+          Every market.<br/>
+          <span style={{ color: 'var(--za)', fontStyle: 'italic', fontWeight: 300 }}>One account.</span>
+        </h1>
+        <p data-reveal style={{ color: 'var(--text-1)', fontSize: 'clamp(16px, 1.4vw, 20px)', lineHeight: 1.55, maxWidth: 720, margin: '32px auto 0', textAlign: 'center' }}>
+          Forex, indices, commodities, crypto, and stocks — 400+ instruments routed through the same engine, the same Copilot, the same balance.
+        </p>
+        <div data-reveal-stagger style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 48, maxWidth: 880, marginInline: 'auto' }}>
+          {ASSET_CLASSES.map(a => (
+            <a key={a.id} href={`#${a.id}`} className="mono" style={{
+              fontSize: 11, color: 'var(--text-1)', letterSpacing: '0.12em',
+              padding: '10px 14px', border: '1px solid var(--line)', borderRadius: 999,
+              textDecoration: 'none', background: 'var(--bg-1)', display: 'inline-flex', gap: 10, alignItems: 'center'
+            }}>
+              <span style={{ color: a.accent }}>●</span>
+              <span>{a.title}</span>
+              <span style={{ color: 'var(--text-3)' }}>{a.count}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AssetSection({ a, idx, align }) {
+  const fmt = (v, sym) => {
+    if (sym.includes('JPY')) return v.toFixed(2);
+    if (/^(US500|US30|NAS100|UK100|GER40|FRA40|JPN225|HK50|AUS200|ESP35|EUSTX50|VIX|BTC|ETH|XAU|XAG|XPT|XPD|COCOA|COFFEE|SUGAR|CORN|AAPL|MSFT|NVDA|TSLA|GOOGL|AMZN|META|JPM|BRK|V|WMT|XOM|BRENT)/.test(sym)) return v.toFixed(2);
+    return v.toFixed(5);
+  };
+  return (
+    <section id={a.id} style={{ padding: 'clamp(60px, 8vw, 100px) 0', borderTop: '1px solid var(--line)', background: idx % 2 === 1 ? 'var(--bg-1)' : 'transparent' }}>
+      <div className="wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: align === 'left' ? '1fr 1.4fr' : '1.4fr 1fr', gap: 56, alignItems: 'start' }}>
+          <div style={{ order: align === 'right' ? 2 : 0 }} data-reveal>
+            <div className="mono" style={{ fontSize: 10, color: a.accent, letterSpacing: '0.18em', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 9, opacity: 0.6 }}>{String(idx + 1).padStart(2, '0')}</span>
+              <span style={{ width: 24, height: 1, background: a.accent }}/>
+              <span>{a.tag}</span>
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(44px, 5.4vw, 80px)', margin: 0, lineHeight: 0.95, letterSpacing: '-0.02em' }}>
+              {a.title}
+              <span style={{ color: a.accent, fontStyle: 'italic', fontWeight: 300, marginLeft: 12 }}>{a.count}</span>
+            </h2>
+            <p style={{ color: 'var(--text-1)', fontSize: 17, lineHeight: 1.55, marginTop: 24, maxWidth: 460 }}>
+              {a.sub}
+            </p>
+            <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, border: '1px solid var(--line)', borderRadius: 8, overflow: 'hidden', maxWidth: 460 }}>
+              {[['Spread', a.spread], ['Leverage', a.leverage], ['Hours', a.hours]].map(([k, v], i) => (
+                <div key={k} style={{ padding: '14px 14px', borderRight: i < 2 ? '1px solid var(--line)' : 'none', background: 'var(--bg-1)' }}>
+                  <div className="mono" style={{ fontSize: 9, color: 'var(--text-3)', letterSpacing: '0.12em' }}>{k.toUpperCase()}</div>
+                  <div className="mono" style={{ fontSize: 12, color: 'var(--text-0)', marginTop: 6 }}>{v}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: 12, marginTop: 28 }}>
+              <a href="trader.html" className="btn btn-primary">Trade {a.title.toLowerCase()} <span className="btn-arrow" aria-hidden="true">→</span></a>
+              <a href="pricing.html" className="btn btn-ghost">Spreads</a>
+            </div>
+          </div>
+          <div style={{ order: align === 'right' ? 1 : 2 }} data-reveal>
+            <div style={{ border: '1px solid var(--line-strong)', borderRadius: 10, overflow: 'hidden', background: 'var(--bg-0)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 18px', borderBottom: '1px solid var(--line)', background: 'var(--bg-2)' }}>
+                <div className="mono" style={{ fontSize: 10, color: 'var(--text-2)', letterSpacing: '0.14em' }}>● LIVE QUOTES · {a.tag}</div>
+                <div className="mono" style={{ fontSize: 10, color: 'var(--accent)' }}><span className="live-dot"/> 14ms</div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+                {a.pairs.map(([sym, price, chg], i) => (
+                  <div key={sym} style={{
+                    padding: '14px 18px',
+                    borderRight: (i + 1) % 3 !== 0 ? '1px solid var(--line)' : 'none',
+                    borderBottom: i < a.pairs.length - 3 ? '1px solid var(--line)' : 'none',
+                  }}>
+                    <div className="mono" style={{ fontSize: 11, color: 'var(--text-2)', letterSpacing: '0.06em' }}>{sym}</div>
+                    <div className="mono" style={{ fontSize: 16, color: 'var(--text-0)', marginTop: 6 }}>{fmt(price, sym)}</div>
+                    <div className="mono" style={{ fontSize: 10, color: chg >= 0 ? 'var(--accent)' : 'var(--red)', marginTop: 4 }}>
+                      {chg >= 0 ? '▲' : '▼'} {Math.abs(chg).toFixed(2)}%
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MarketsPage() {
+  return (
+    <>
+      <Nav current="markets"/>
+      <LiveTicker/>
+      <MarketsHero/>
+      {ASSET_CLASSES.map((a, i) => (
+        <AssetSection key={a.id} a={a} idx={i} align={i % 2 === 0 ? 'left' : 'right'}/>
+      ))}
+      {/* exec stats */}
+      <Section eyebrow="One engine" title="Same liquidity. Every market." intro="Whether you're trading EURUSD or NVDA, the order routes through the same matching engine, the same 14 prime LPs, the same execution telemetry.">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, border: '1px solid var(--line)', borderRadius: 10, overflow: 'hidden' }}>
+          {[
+            ['400+', 'Instruments'],
+            ['14ms', 'Median execution'],
+            ['99.98%', 'Fill rate'],
+            ['24/7', 'Crypto desk'],
+          ].map(([n, l], i) => (
+            <div key={l} style={{ padding: 36, borderRight: i < 3 ? '1px solid var(--line)' : 'none', background: 'var(--bg-1)' }}>
+              <div className="display" style={{ fontSize: 48, color: 'var(--text-0)' }}>{n}</div>
+              <div className="mono" style={{ fontSize: 10, color: 'var(--text-2)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: 10 }}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+      <CtaBand zone="intel"/>
+      <Footer/>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<MarketsPage/>);
+</script>
+</body>
+</html>

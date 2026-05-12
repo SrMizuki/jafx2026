@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 192 80">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0 {
+        opacity: .33;
+      }
+
+      .st1 {
+        opacity: .85;
+      }
+
+      .st2 {
+        opacity: .75;
+      }
+
+      .st3, .st4, .st5 {
+        fill: #01ae7a;
+      }
+
+      .st3, .st6 {
+        font-size: 12px;
+      }
+
+      .st4 {
+        font-family: NotoSans-Medium, 'Noto Sans';
+        font-weight: 500;
+      }
+
+      .st4, .st7 {
+        font-size: 6px;
+      }
+
+      .st8, .st6, .st7 {
+        fill: #fff;
+      }
+
+      .st6, .st9 {
+        font-family: NotoSans-Bold, 'Noto Sans';
+        font-weight: 700;
+      }
+
+      .st10 {
+        opacity: .66;
+      }
+
+      .st11 {
+        opacity: .2;
+      }
+
+      .st5 {
+        opacity: .25;
+      }
+
+      .st12, .st7 {
+        font-family: NotoSans-Light, 'Noto Sans';
+        font-weight: 300;
+      }
+    </style>
+  </defs>
+  <g class="st0">
+    <rect class="st1" x="16" width="159" height="66" rx="2" ry="2"/>
+    <path class="st5" d="M173,0H16v13h159V2c0-1.11-.9-2-2-2Z"/>
+    <text class="st4" transform="translate(20 9)"><tspan x="0" y="0">WEEK 45 • AUTO - JOURNAL</tspan></text>
+    <g class="st11">
+      <path class="st8" d="M173,.5c.83,0,1.5.67,1.5,1.5v61.99c0,.83-.67,1.5-1.5,1.5H18c-.83,0-1.5-.67-1.5-1.5V2c0-.83.67-1.5,1.5-1.5h154.99M173,0H18C16.9,0,16,.9,16,2v61.99c0,1.11.9,2,2,2h154.99c1.11,0,2-.9,2-2V2C175,.9,174.1,0,173,0h0Z"/>
+    </g>
+  </g>
+  <g class="st10">
+    <rect class="st1" x="5" y="6" width="181" height="66" rx="2" ry="2"/>
+    <path class="st5" d="M184,6H7c-1.1,0-2,.89-2,2v11h181v-11c0-1.11-.9-2-2-2Z"/>
+    <text class="st4" transform="translate(9 15)"><tspan x="0" y="0">WEEK 46 • AUTO - JOURNAL</tspan></text>
+    <g class="st11">
+      <path class="st8" d="M184,6.5c.83,0,1.5.67,1.5,1.5v62.01c0,.83-.67,1.5-1.5,1.5H7c-.83,0-1.5-.67-1.5-1.5V8c0-.83.67-1.5,1.5-1.5h177.01M184,6H7c-1.1,0-2,.89-2,2v62.01c0,1.1.89,2,2,2h177.01c1.1,0,2-.89,2-2V8c0-1.1-.89-2-2-2h0Z"/>
+    </g>
+  </g>
+  <g>
+    <rect class="st1" y="14" width="192" height="66" rx="2" ry="2"/>
+    <path class="st5" d="M190,14H2c-1.11,0-2,.9-2,2v11h192v-11c0-1.11-.9-2-2-2Z"/>
+    <text class="st4" transform="translate(4 23)"><tspan x="0" y="0">WEEK 47 • AUTO - JOURNAL</tspan></text>
+    <g class="st11">
+      <path class="st8" d="M190,14.5c.83,0,1.5.67,1.5,1.5v61.99c0,.83-.67,1.5-1.5,1.5H2c-.83,0-1.5-.67-1.5-1.5V16c0-.83.67-1.5,1.5-1.5h187.99M190,14H2c-1.11,0-2,.9-2,2v61.99c0,1.11.9,2,2,2h187.99c1.11,0,2-.9,2-2V16c0-1.11-.9-2-2-2h0Z"/>
+    </g>
+    <g>
+      <rect class="st5" x="12" y="37.18" width="53" height="31.82" rx="1" ry="1"/>
+      <g class="st2">
+        <text class="st7" transform="translate(27.85 48)"><tspan x="0" y="0">TRADES</tspan></text>
+      </g>
+      <g class="st2">
+        <text class="st6" transform="translate(31.63 63)"><tspan x="0" y="0">42</tspan></text>
+      </g>
+    </g>
+    <g>
+      <rect class="st5" x="69.5" y="37.18" width="53" height="31.82" rx="1" ry="1"/>
+      <g class="st2">
+        <text class="st7" transform="translate(90.18 48)"><tspan x="0" y="0">WIN</tspan></text>
+      </g>
+      <text class="st3" transform="translate(84.26 63)"><tspan class="st9" x="0" y="0">58</tspan><tspan class="st12" x="13.73" y="0">%</tspan></text>
+    </g>
+    <g>
+      <rect class="st5" x="127" y="37.18" width="53" height="31.82" rx="1" ry="1"/>
+      <g class="st2">
+        <text class="st7" transform="translate(148.04 48)"><tspan x="0" y="0">P&amp;L</tspan></text>
+      </g>
+      <text class="st3" transform="translate(138.33 63)"><tspan class="st9" x="0" y="0">+18</tspan><tspan class="st12" x="20.59" y="0">%</tspan></text>
+    </g>
+  </g>
+</svg>

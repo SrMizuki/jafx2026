@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 192 80">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2, .st3, .st4 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .st0, .st1, .st4 {
+        stroke-width: .5px;
+      }
+
+      .st0, .st2, .st3 {
+        stroke: #fff;
+      }
+
+      .st0, .st5 {
+        opacity: .1;
+      }
+
+      .st6 {
+        opacity: .75;
+      }
+
+      .st1 {
+        stroke: #01ae7a;
+      }
+
+      .st7 {
+        fill: url(#radial-gradient1);
+      }
+
+      .st7, .st2, .st3, .st8 {
+        opacity: .5;
+      }
+
+      .st9, .st5 {
+        fill: #fff;
+      }
+
+      .st2 {
+        stroke-width: 4px;
+      }
+
+      .st2, .st3 {
+        stroke-linecap: round;
+      }
+
+      .st3 {
+        stroke-width: 2px;
+      }
+
+      .st4 {
+        stroke: #af0322;
+      }
+
+      .st10 {
+        fill: #01ae7a;
+        font-family: NotoSans-Medium, 'Noto Sans';
+        font-size: 8px;
+        font-weight: 500;
+      }
+
+      .st11 {
+        opacity: .2;
+      }
+
+      .st8 {
+        fill: url(#radial-gradient);
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="41" cy="50" fx="41" fy="50" r="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#af0322"/>
+      <stop offset="1" stop-color="#af0322" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient1" cx="151" cy="30" fx="151" fy="30" r="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#01ae7a"/>
+      <stop offset="1" stop-color="#01ae7a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g>
+    <path class="st5" d="M190,74h-32v6s-6-6-6-6h-7c-1.1,0-2-.9-2-2v-20c0-1.1.9-2,2-2h45c1.1,0,2,.9,2,2v20c0,1.1-.9,2-2,2Z"/>
+    <line class="st3" x1="149" y1="56" x2="186" y2="56"/>
+    <line class="st3" x1="149" y1="62" x2="186" y2="62"/>
+    <line class="st3" x1="149" y1="68" x2="176" y2="68"/>
+    <g class="st11">
+      <path class="st9" d="M190,50.5c.83,0,1.5.67,1.5,1.5v20c0,.83-.67,1.5-1.5,1.5h-32.5v5.29s-5.15-5.15-5.15-5.15l-.15-.15h-7.21c-.83,0-1.5-.67-1.5-1.5v-20c0-.83.67-1.5,1.5-1.5h45M190,50h-45c-1.1,0-2,.9-2,2v20c0,1.1.9,2,2,2h7l6,6v-6h32c1.1,0,2-.9,2-2v-20c0-1.1-.9-2-2-2h0Z"/>
+    </g>
+  </g>
+  <line class="st2" x1="2" y1="2" x2="51" y2="2"/>
+  <line class="st2" x1="2" y1="11" x2="69" y2="11"/>
+  <line class="st2" x1="2" y1="20" x2="29" y2="20"/>
+  <circle class="st8" cx="41" cy="50" r="30"/>
+  <circle class="st7" cx="151" cy="30" r="30"/>
+  <path class="st6" d="M143,52c0-1.11.9-2,2-2h6v-28c0-1.1-.9-2-2-2H43c-1.1,0-2,.9-2,2v36c0,1.1.9,2,2,2h100v-8Z"/>
+  <text class="st10" transform="translate(46 29)"><tspan x="0" y="0">EUR/USD</tspan></text>
+  <polyline class="st1" points="41 56.5 52 53.5 63 54.5 74 48.5 85 47.5 96 50.5 107 41.5 118 40.5 129 34.5 140 31.5 151 25.5"/>
+  <line class="st0" x1="151" y1="46" x2="41" y2="46"/>
+  <polyline class="st4" points="41 56.5 52 53.5 63 54.5 74 48.5 85 47.5 96 50.5 101.5 46"/>
+  <path class="st1" d="M143,60H43c-1.1,0-2-.9-2-2V22c0-1.1.9-2,2-2h106c1.1,0,2,.9,2,2v28"/>
+</svg>

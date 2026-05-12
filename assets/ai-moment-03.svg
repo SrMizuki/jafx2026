@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 192 80">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: #af0322;
+      }
+
+      .st2, .st3, .st4 {
+        fill: #fff;
+      }
+
+      .st2, .st5, .st1 {
+        font-family: NotoSans-Medium, 'Noto Sans';
+        font-size: 8px;
+        font-weight: 500;
+      }
+
+      .st6 {
+        opacity: .75;
+      }
+
+      .st7, .st8, .st9 {
+        opacity: .25;
+      }
+
+      .st10, .st11, .st12 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .st10, .st12 {
+        stroke: #fff;
+        stroke-width: .5px;
+      }
+
+      .st13 {
+        font-family: NotoSans-Regular, 'Noto Sans';
+        font-size: 6px;
+        letter-spacing: .1em;
+      }
+
+      .st8 {
+        fill: url(#linear-gradient1);
+      }
+
+      .st5, .st14 {
+        fill: #01ae7a;
+      }
+
+      .st4 {
+        opacity: .1;
+      }
+
+      .st11 {
+        stroke: #01ae7a;
+      }
+
+      .st12 {
+        stroke-dasharray: 2 2;
+      }
+
+      .st9 {
+        fill: url(#linear-gradient);
+      }
+
+      .st15 {
+        opacity: .5;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="124" y1="53" x2="124" y2="45" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#01ae7a" stop-opacity="0"/>
+      <stop offset="1" stop-color="#01ae7a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" y1="37" y2="45" xlink:href="#linear-gradient"/>
+  </defs>
+  <rect class="st9" x="56" y="45" width="136" height="8"/>
+  <rect class="st8" x="56" y="37" width="136" height="8"/>
+  <g class="st15">
+    <g>
+      <line class="st10" y1="45" x2="1" y2="45"/>
+      <line class="st12" x1="3" y1="45" x2="190" y2="45"/>
+      <line class="st10" x1="191" y1="45" x2="192" y2="45"/>
+    </g>
+  </g>
+  <g class="st7">
+    <g>
+      <line class="st10" x1="24" y1="76" x2="25" y2="76"/>
+      <line class="st12" x1="27" y1="76" x2="82" y2="76"/>
+      <line class="st10" x1="83" y1="76" x2="84" y2="76"/>
+    </g>
+  </g>
+  <g class="st7">
+    <g>
+      <line class="st10" x1="109" y1="76" x2="110" y2="76"/>
+      <line class="st12" x1="112" y1="76" x2="167" y2="76"/>
+      <line class="st10" x1="168" y1="76" x2="169" y2="76"/>
+    </g>
+  </g>
+  <line class="st11" x1="56" y1="45" x2="192" y2="45"/>
+  <rect class="st0" x="0" y="40" width="3" height="10" rx="1.5" ry="1.5"/>
+  <rect class="st14" x="189" y="40" width="3" height="10" rx="1.5" ry="1.5"/>
+  <text class="st1" transform="translate(0 59)"><tspan x="0" y="0">SL</tspan></text>
+  <text class="st5" transform="translate(183 59)"><tspan x="0" y="0">TP</tspan></text>
+  <path class="st4" d="M2,0h188c1.1,0,2,.9,2,2v30s-3.41-3.41-3.41-3.41c-.38-.38-.88-.59-1.41-.59H2c-1.1,0-2-.9-2-2V2C0,.9.9,0,2,0Z"/>
+  <g class="st6">
+    <text class="st13" transform="translate(9 11.56)"><tspan class="st14" x="0" y="0">• </tspan><tspan class="st3" x="5.02" y="0">You&apos;ve got breathing room on the upside</tspan><tspan class="st14" x="0" y="10">• </tspan><tspan class="st3" x="5.02" y="10">Stay patient and let price do the work</tspan></text>
+  </g>
+  <path class="st14" d="M2,0h1v28h-1c-1.1,0-2-.9-2-2V2C0,.9.9,0,2,0Z"/>
+  <g class="st15">
+    <text class="st2" transform="translate(172 79)"><tspan x="0" y="0">1.096</tspan></text>
+  </g>
+  <g class="st15">
+    <text class="st2" transform="translate(0 79)"><tspan x="0" y="0">1.088</tspan></text>
+  </g>
+  <g class="st15">
+    <text class="st2" transform="translate(86 79)"><tspan x="0" y="0">1.092</tspan></text>
+  </g>
+  <rect class="st3" x="94.5" y="40" width="3" height="10" rx="1.5" ry="1.5"/>
+  <text class="st2" transform="translate(84 59)"><tspan x="0" y="0">NOW</tspan></text>
+</svg>

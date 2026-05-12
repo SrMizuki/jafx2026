@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>Contact — JAFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>(function(){try{const t=localStorage.getItem('jafx-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="components/shared.jsx"></script>
+<script type="text/babel" src="components/hero.jsx"></script>
+<script type="text/babel" src="components/sections.jsx"></script>
+<script type="text/babel">
+const { useState: useStateC } = React;
+
+function ContactHero() {
+  return (
+    <section className="zone zone-momentum" style={{ padding: 'clamp(80px, 12vw, 140px) 0 clamp(40px, 6vw, 80px)', position: 'relative', overflow: 'hidden' }}>
+      <NeuralBg/>
+      <div className="wrap" style={{ position: 'relative', textAlign: 'center' }}>
+        <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--za)', letterSpacing: '0.2em', marginBottom: 24 }}>
+          <span className="live-dot" style={{ background: 'var(--za)', boxShadow: '0 0 10px var(--za)' }}/>&nbsp;&nbsp;CONTACT
+        </div>
+        <h1 className="display" data-reveal style={{ fontSize: 'clamp(56px, 9vw, 128px)', margin: 0, lineHeight: 0.95, letterSpacing: '-0.02em' }}>
+          Talk to a<br/>
+          <span style={{ color: 'var(--za)', fontStyle: 'italic', fontWeight: 300 }}>real human.</span>
+        </h1>
+        <p data-reveal style={{ color: 'var(--text-1)', fontSize: 'clamp(16px, 1.4vw, 20px)', lineHeight: 1.55, maxWidth: 620, margin: '32px auto 0' }}>
+          Live chat is on the platform 24/5. For everything else — partnerships, press, institutional, or just a question about your account — pick a channel below.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ContactChannels() {
+  const channels = [
+    { tag: 'TRADING SUPPORT', title: 'Live chat in the terminal', sub: '24 / 5 · median first response 38 seconds.', cta: 'Open the chat', href: 'trader.html', accent: 'var(--accent)' },
+    { tag: 'EMAIL', title: 'support@jafx.co', sub: 'Account, deposits, KYC, technical issues. Replies under 2 hours.', cta: 'Email support', href: 'mailto:support@jafx.co', accent: 'var(--accent)' },
+    { tag: 'PARTNERSHIPS', title: 'partners@jafx.co', sub: 'IB, white-label, liquidity, and tech integrations.', cta: 'Reach the partner desk', href: 'mailto:partners@jafx.co', accent: 'var(--accent)' },
+    { tag: 'PRESS', title: 'press@jafx.co', sub: 'Embargoed releases, interviews, and analyst briefings.', cta: 'Email press', href: 'mailto:press@jafx.co', accent: '#ffb24a' },
+  ];
+  return (
+    <section style={{ padding: 'clamp(40px, 6vw, 80px) 0 clamp(60px, 8vw, 100px)', borderTop: '1px solid var(--line)' }}>
+      <div className="wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0, border: '1px solid var(--line)', borderRadius: 12, overflow: 'hidden' }}>
+          {channels.map((c, i) => (
+            <div key={c.tag} style={{
+              padding: 36,
+              borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none',
+              borderBottom: i < 2 ? '1px solid var(--line)' : 'none',
+              background: 'var(--bg-1)',
+              display: 'flex', flexDirection: 'column'
+            }} data-reveal>
+              <div className="mono" style={{ fontSize: 10, color: c.accent, letterSpacing: '0.16em', marginBottom: 14 }}>● {c.tag}</div>
+              <div className="display" style={{ fontSize: 28, color: 'var(--text-0)', lineHeight: 1.15 }}>{c.title}</div>
+              <p style={{ color: 'var(--text-2)', fontSize: 14, lineHeight: 1.5, marginTop: 12, flex: 1 }}>{c.sub}</p>
+              <a href={c.href} className="mono" style={{ fontSize: 11, color: c.accent, letterSpacing: '0.1em', marginTop: 18, textDecoration: 'none' }}>
+                {c.cta.toUpperCase()} →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactForm() {
+  const [submitted, setSubmitted] = useStateC(false);
+  return (
+    <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', borderTop: '1px solid var(--line)' }}>
+      <div className="wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 60, alignItems: 'start' }}>
+          <div data-reveal>
+            <div className="mono" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.18em', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 9, opacity: 0.6 }}>05</span>
+              <span style={{ width: 24, height: 1, background: 'var(--accent)' }}/>
+              <span>OR DROP A MESSAGE</span>
+            </div>
+            <h2 className="display" style={{ fontSize: 'clamp(36px, 4vw, 56px)', margin: 0, lineHeight: 0.98, letterSpacing: '-0.01em' }}>
+              We read<br/><em style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 300 }}>every line.</em>
+            </h2>
+            <p style={{ color: 'var(--text-1)', fontSize: 16, lineHeight: 1.55, marginTop: 22, maxWidth: 360 }}>
+              Form submissions land in the support inbox. If your account is open, drop your account number and we'll route the message to your relationship desk.
+            </p>
+            <div style={{ marginTop: 28, paddingTop: 20, borderTop: '1px solid var(--line)' }}>
+              <div className="mono" style={{ fontSize: 10, color: 'var(--text-3)', letterSpacing: '0.14em', marginBottom: 8 }}>HEAD OFFICE</div>
+              <div style={{ fontSize: 14, color: 'var(--text-1)', lineHeight: 1.6 }}>
+                JAFX Capital (Pty) Ltd<br/>
+                Sandton Central, Johannesburg, ZA<br/>
+                FSCA · FSP No. 51243
+              </div>
+            </div>
+          </div>
+
+          <form
+            data-reveal
+            onSubmit={e => { e.preventDefault(); setSubmitted(true); }}
+            style={{ border: '1px solid var(--line-strong)', borderRadius: 12, padding: 28, background: 'var(--bg-1)' }}
+          >
+            {submitted ? (
+              <div style={{ padding: '40px 0', textAlign: 'center' }}>
+                <div className="mono" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.18em' }}>● RECEIVED</div>
+                <h3 className="display" style={{ fontSize: 32, marginTop: 18, color: 'var(--text-0)' }}>Thanks. We'll be in touch.</h3>
+                <p style={{ color: 'var(--text-2)', fontSize: 14, marginTop: 12 }}>You'll get a reply at the address you provided within 2 hours.</p>
+              </div>
+            ) : (
+              <>
+                <FormRow label="NAME">
+                  <input type="text" required style={inputStyle}/>
+                </FormRow>
+                <FormRow label="EMAIL">
+                  <input type="email" required style={inputStyle}/>
+                </FormRow>
+                <FormRow label="REASON">
+                  <select style={inputStyle} defaultValue="support">
+                    <option value="support">Trading support</option>
+                    <option>Account / KYC</option>
+                    <option>Partnership</option>
+                    <option>Press</option>
+                    <option>Institutional</option>
+                    <option>Other</option>
+                  </select>
+                </FormRow>
+                <FormRow label="ACCOUNT # (OPTIONAL)">
+                  <input type="text" placeholder="e.g. 142830" style={inputStyle}/>
+                </FormRow>
+                <FormRow label="MESSAGE">
+                  <textarea rows={6} required style={{ ...inputStyle, resize: 'vertical', fontFamily: 'var(--font-body)' }}/>
+                </FormRow>
+                <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>
+                  Send message <span className="btn-arrow" aria-hidden="true">→</span>
+                </button>
+                <p className="mono" style={{ fontSize: 9, color: 'var(--text-3)', letterSpacing: '0.1em', marginTop: 16, textAlign: 'center' }}>
+                  ● ENCRYPTED IN TRANSIT · NEVER USED FOR MARKETING
+                </p>
+              </>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const inputStyle = {
+  width: '100%',
+  background: 'var(--bg-0)',
+  border: '1px solid var(--line)',
+  color: 'var(--text-0)',
+  padding: '12px 14px',
+  borderRadius: 6,
+  fontFamily: 'var(--font-mono)',
+  fontSize: 13,
+  outline: 'none',
+};
+
+function FormRow({ label, children }) {
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <label className="mono" style={{ display: 'block', fontSize: 9, color: 'var(--text-3)', letterSpacing: '0.14em', marginBottom: 8 }}>{label}</label>
+      {children}
+    </div>
+  );
+}
+
+function ContactPage() {
+  return (
+    <>
+      <Nav current="contact"/>
+      <ContactHero/>
+      <ContactChannels/>
+      <ContactForm/>
+      <Footer/>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<ContactPage/>);
+</script>
+</body>
+</html>

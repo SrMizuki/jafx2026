@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 192 80">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: #af0322;
+      }
+
+      .st2, .st3, .st4, .st1 {
+        letter-spacing: .1em;
+      }
+
+      .st2, .st5, .st6 {
+        font-family: NotoSans-Light, 'Noto Sans';
+        font-size: 8px;
+        font-weight: 300;
+      }
+
+      .st3, .st6, .st7, .st8 {
+        fill: #c8c8c8;
+      }
+
+      .st9, .st4, .st10 {
+        fill: #fff;
+      }
+
+      .st11 {
+        stroke: #af0322;
+      }
+
+      .st11, .st12 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .st6, .st8 {
+        letter-spacing: .1em;
+      }
+
+      .st13 {
+        fill: url(#linear-gradient1);
+      }
+
+      .st13, .st14, .st15 {
+        opacity: .25;
+      }
+
+      .st10 {
+        opacity: .1;
+      }
+
+      .st14 {
+        fill: url(#linear-gradient2);
+      }
+
+      .st12 {
+        stroke: #01ae7a;
+      }
+
+      .st15 {
+        fill: url(#linear-gradient);
+      }
+
+      .st16 {
+        fill: #01ae7a;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="90" y1="10.5" x2="159" y2="10.5" gradientTransform="translate(249 21) rotate(180)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#01ae7a" stop-opacity="0"/>
+      <stop offset="1" stop-color="#01ae7a"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient1" x1="106.5" y1="38" x2="175.5" y2="38" gradientTransform="translate(282 76) rotate(180)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient2" x1="123" y1="65.5" x2="192" y2="65.5" gradientTransform="translate(315 131) rotate(180)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#af0322" stop-opacity="0"/>
+      <stop offset="1" stop-color="#af0322"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path class="st10" d="M157,0H2C.9,0,0,.9,0,2v23s3.41-3.41,3.41-3.41c.38-.38.88-.59,1.41-.59h152.17c1.1,0,2-.9,2-2V2c0-1.1-.9-2-2-2Z"/>
+    <path class="st15" d="M92,0h67v21h-67c-1.1,0-2-.9-2-2V2C90,.9,90.9,0,92,0Z" transform="translate(249 21) rotate(-180)"/>
+    <path class="st16" d="M158,0h1v21h-1c-1.1,0-2-.9-2-2V2C156,.9,156.9,0,158,0Z" transform="translate(315 21) rotate(-180)"/>
+    <text class="st5" transform="translate(27 14)"><tspan class="st3" x="0" y="0">ECB in 30 Min • Tighten</tspan><tspan class="st4" x="103.22" y="0"> </tspan><tspan class="st1" x="106.1" y="0">SL</tspan><tspan class="st8" x="116.19" y="0">?</tspan></text>
+    <g>
+      <g>
+        <line class="st12" x1="13" y1="12.72" x2="13" y2="9.94"/>
+        <line class="st12" x1="13" y1="9.39" x2="13" y2="8.28"/>
+      </g>
+      <circle class="st12" cx="13" cy="10.5" r="5"/>
+    </g>
+  </g>
+  <g>
+    <path class="st10" d="M173.5,27.5H18.5c-1.1,0-2,.9-2,2v23s3.41-3.41,3.41-3.41c.38-.38.88-.59,1.41-.59h152.17c1.1,0,2-.9,2-2v-17c0-1.1-.9-2-2-2Z"/>
+    <path class="st13" d="M108.5,27.5h67v21h-67c-1.1,0-2-.9-2-2v-17c0-1.1.9-2,2-2Z" transform="translate(282 76) rotate(-180)"/>
+    <path class="st16" d="M174.5,27.5h1v21h-1c-1.1,0-2-.9-2-2v-17c0-1.1.9-2,2-2Z" transform="translate(348 76) rotate(-180)"/>
+    <text class="st2" transform="translate(43.5 41.5)"><tspan class="st7" x="0" y="0">XAU short 58% to</tspan><tspan class="st9" x="76.25" y="0"> </tspan><tspan class="st16" x="79.13" y="0">TP</tspan></text>
+    <g>
+      <g>
+        <line class="st12" x1="29.5" y1="40.22" x2="29.5" y2="37.44"/>
+        <line class="st12" x1="29.5" y1="36.89" x2="29.5" y2="35.78"/>
+      </g>
+      <circle class="st12" cx="29.5" cy="38" r="5"/>
+    </g>
+  </g>
+  <g>
+    <path class="st10" d="M190,55H35c-1.1,0-2,.9-2,2v23s3.41-3.41,3.41-3.41c.38-.38.88-.59,1.41-.59h152.17c1.1,0,2-.9,2-2v-17c0-1.1-.9-2-2-2Z"/>
+    <path class="st14" d="M125,55h67v21h-67c-1.1,0-2-.9-2-2v-17c0-1.1.9-2,2-2Z" transform="translate(315 131) rotate(-180)"/>
+    <path class="st0" d="M191,55h1v21h-1c-1.1,0-2-.9-2-2v-17c0-1.1.9-2,2-2Z" transform="translate(381 131) rotate(-180)"/>
+    <g>
+      <polygon class="st11" points="46 61.28 41 69.72 51 69.72 46 61.28"/>
+      <line class="st11" x1="46" y1="64.41" x2="46" y2="66.59"/>
+      <line class="st11" x1="46" y1="67.22" x2="46" y2="68.47"/>
+    </g>
+    <text class="st6" transform="translate(60 69)"><tspan x="0" y="0">USD exposure above cap</tspan></text>
+  </g>
+</svg>

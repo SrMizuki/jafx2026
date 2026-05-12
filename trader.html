@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#050607"/>
+<meta name="application-name" content="JAFX"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="JAFX"/>
+<meta property="og:site_name" content="JAFX"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JAFX"/>
+<meta property="og:image" content="assets/ico.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JAFX"/>
+<meta name="twitter:image" content="assets/ico.svg"/>
+<link rel="icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="shortcut icon" href="assets/ico.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/ico.svg"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<title>JAFX Terminal — AI-first trader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="app/trader.css?v=3">
+<link rel="stylesheet" href="app/workspace-v2.css?v=3">
+<style>
+  /* inline override — ensures latest topbar sizing regardless of CSS cache */
+  .topbar-search { flex: 1 1 200px !important; max-width: 380px !important; min-width: 160px !important; white-space: nowrap !important; overflow: hidden !important; }
+  .topbar-search > span { overflow: hidden; text-overflow: ellipsis; flex: 1; }
+  .topbar-workspaces { max-width: 44vw; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .topbar-workspaces::-webkit-scrollbar { display: none; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body class="trader-body">
+<div id="root"></div>
+
+<script type="text/babel" src="app/shell.jsx"></script>
+<script type="text/babel" src="app/cards.jsx"></script>
+<script type="text/babel" src="app/rail.jsx"></script>
+<script type="text/babel" src="app/screens.jsx"></script>
+<script type="text/babel" src="app/trading-workspace.jsx"></script>
+<script type="text/babel" src="app/ai-features.jsx"></script>
+<script type="text/babel" src="app/workspace-v2.jsx"></script>
+<script type="text/babel" src="app/copilot-drawer.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const SCREENS = [
+  { id: 'v2',        label: 'AI trader (v2)',   comp: 'TradingWorkspaceV2WithCopilot' },
+  { id: 'trader',    label: 'Web trader',       comp: 'TradingWorkspaceWithCopilot' },
+  { id: 'workspace', label: 'Copilot canvas',   comp: 'ActiveWorkspace' },
+  { id: 'ticket',    label: 'Order ticket',     comp: 'OrderTicketScreen' },
+  { id: 'position',  label: 'Live position',    comp: 'LivePositionScreen' },
+  { id: 'nudge',     label: 'Proactive nudge',  comp: 'NudgeScreen' },
+  { id: 'stacked',   label: 'Stacked variant',  comp: 'StackedWorkspace' },
+];
+
+function TradingWorkspaceWithCopilot() {
+  const [copilotOpen, setCopilotOpen] = useState(false);
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setCopilotOpen(v => !v);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  return (
+    <>
+      <TradingWorkspace onOpenCopilot={() => setCopilotOpen(true)}/>
+      <CopilotDrawer open={copilotOpen} onClose={() => setCopilotOpen(false)}/>
+    </>
+  );
+}
+window.TradingWorkspaceWithCopilot = TradingWorkspaceWithCopilot;
+
+function TradingWorkspaceV2WithCopilot() {
+  const [copilotOpen, setCopilotOpen] = useState(false);
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setCopilotOpen(v => !v);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  return (
+    <>
+      <TradingWorkspaceV2 onOpenCopilot={() => setCopilotOpen(true)}/>
+      <CopilotDrawer open={copilotOpen} onClose={() => setCopilotOpen(false)}/>
+    </>
+  );
+}
+window.TradingWorkspaceV2WithCopilot = TradingWorkspaceV2WithCopilot;
+
+function App() {
+  const initial = (typeof window !== 'undefined' && window.location.hash.replace('#','')) || localStorage.getItem('jafx-trader-screen') || 'v2';
+  const [screen, setScreen] = useState(SCREENS.find(s => s.id === initial) ? initial : 'v2');
+
+  useEffect(() => {
+    localStorage.setItem('jafx-trader-screen', screen);
+    if (window.location.hash.replace('#','') !== screen) window.location.hash = screen;
+  }, [screen]);
+
+  useEffect(() => {
+    const onHash = () => {
+      const h = window.location.hash.replace('#','');
+      if (SCREENS.find(s => s.id === h)) setScreen(h);
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const Current = window[SCREENS.find(s => s.id === screen).comp];
+
+  return (
+    <>
+      <Current/>
+      <div className="screen-nav">
+        {SCREENS.map(s => (
+          <button key={s.id} className={screen === s.id ? 'active' : ''} onClick={() => setScreen(s.id)}>{s.label}</button>
+        ))}
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
