@@ -40,14 +40,26 @@
       );
     });
 
-    // staggered children
+    // staggered children — default: y + opacity. Hero pills strip: opacity only.
     w.gsap.utils.toArray('[data-reveal-stagger]').forEach((el) => {
       const kids = Array.from(el.children);
-      w.gsap.fromTo(kids,
-        { y: 24, opacity: 0 },
+      const fadeOnly = el.classList.contains('platform-hero-pills-strip');
+      w.gsap.fromTo(
+        kids,
+        fadeOnly ? { opacity: 0 } : { y: 24, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', stagger: 0.06,
+          ...(fadeOnly ? {} : { y: 0 }),
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          stagger: 0.06,
+          force3D: false,
           scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+          onComplete: fadeOnly
+            ? function pillStripRevealDone() {
+                kids.forEach((kid) => w.gsap.set(kid, { clearProps: 'transform' }));
+              }
+            : undefined,
         }
       );
     });

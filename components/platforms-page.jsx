@@ -1,22 +1,24 @@
-/* global React, Nav, Footer, CtaBand, LiveTicker, TerminalUI, BrowserFrame, PhoneFrame, JafxMobileScreen, MT5Desktop, MT5MobileScreen, NeuralBg, DeviceShowcaseEffects */
+/* global React, Nav, Footer, CtaBand, LiveTicker, TerminalUI, BrowserFrame, PhoneFrame, JafxMobileScreen, MT5Desktop, MT5MobileScreen, NeuralBg, DeviceShowcaseEffects, JafxAiOrbs */
 
 /* ============================================================
    PLATFORMS PAGE — JAFX Web Trader + MT5 (Win/Mac/iOS/Android)
    ============================================================ */
 
 const PLATFORMS = [
-  { id: 'web',     name: 'JAFX Web Trader', tag: 'Built in-house · AI-native',     accent: 'var(--accent)', icon: 'JX' },
-  { id: 'mt5-win', name: 'MT5 for Windows', tag: 'EA support · Strategy Tester',   accent: 'var(--accent)', icon: 'W' },
-  { id: 'mt5-mac', name: 'MT5 for macOS',   tag: 'Universal · Apple Silicon',      accent: '#c9c9d1',        icon: '' },
-  { id: 'mt5-ios', name: 'MT5 for iOS',     tag: 'iPhone & iPad · Native',         accent: 'var(--accent)', icon: 'iOS' },
-  { id: 'mt5-and', name: 'MT5 for Android', tag: 'Phone & tablet · Material',      accent: '#7fd97a',        icon: 'A' },
+  { id: 'web',     name: 'JAFX Web Trader', iconSrc: 'assets/i-webtrader.svg' },
+  { id: 'mt5-win', name: 'MT5 for Windows', iconSrc: 'assets/i-windows.svg' },
+  { id: 'mt5-mac', name: 'MT5 for macOS',   iconSrc: 'assets/i-apple.svg' },
+  { id: 'mt5-ios', name: 'MT5 for iOS',     iconSrc: 'assets/i-appstore.svg' },
+  { id: 'mt5-and', name: 'MT5 for Android', iconSrc: 'assets/i-playstore.svg' },
 ];
 
 function PlatformsHero() {
   return (
-    <section className="zone zone-execution" style={{ padding: 'clamp(80px, 12vw, 140px) 0 clamp(60px, 8vw, 100px)', position: 'relative', overflow: 'hidden' }}>
-      <NeuralBg/>
-      <div className="wrap" style={{ position: 'relative' }}>
+    <section className="zone zone-execution" style={{ padding: 'clamp(80px, 12vw, 140px) 0 clamp(60px, 8vw, 100px)', position: 'relative', overflow: 'visible' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
+        <NeuralBg/>
+      </div>
+      <div className="wrap" style={{ position: 'relative', zIndex: 1 }}>
         <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--accent)', letterSpacing: '0.2em', marginBottom: 24, textAlign: 'center' }}>
           <span className="live-dot"/>&nbsp;&nbsp;TRADING PLATFORMS
         </div>
@@ -27,16 +29,18 @@ function PlatformsHero() {
         <p data-reveal style={{ color: 'var(--text-1)', fontSize: 'clamp(16px, 1.4vw, 20px)', lineHeight: 1.55, maxWidth: 720, margin: '32px auto 0', textAlign: 'center' }}>
           Trade JAFX from anywhere. The AI-native web terminal in your browser, MT5 on every desktop and mobile OS — all wired into the same execution engine, the same liquidity, the same balance.
         </p>
-        <div data-reveal-stagger style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 48, maxWidth: 880, marginInline: 'auto' }}>
+        <div data-reveal-stagger className="platform-hero-pills-strip" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 48, marginInline: 'auto' }}>
           {PLATFORMS.map(p => (
-            <a key={p.id} href={`#${p.id}`} className="mono" style={{
-              fontSize: 11, color: 'var(--text-1)', letterSpacing: '0.12em',
-              padding: '10px 14px', border: '1px solid var(--line)', borderRadius: 999,
-              textDecoration: 'none', background: 'var(--bg-1)', display: 'inline-flex', gap: 10, alignItems: 'center'
-            }}>
-              <span style={{ width: 18, height: 18, borderRadius: 4, background: p.accent, color: '#000', display: 'grid', placeItems: 'center', fontSize: 9, fontWeight: 700 }}>{p.icon || '◷'}</span>
-              <span>{p.name}</span>
-            </a>
+            <span key={p.id} className="platform-hero-pill-stagger">
+              <a href={`#${p.id}`} className="mono platform-hero-pill">
+                <span className="platform-hero-pill__inner">
+                  <span className="platform-hero-pill-icon" aria-hidden="true">
+                    <img src={p.iconSrc} alt="" width="22" height="22" loading="lazy" decoding="async" />
+                  </span>
+                  <span>{p.name}</span>
+                </span>
+              </a>
+            </span>
           ))}
         </div>
       </div>
@@ -48,10 +52,11 @@ function PlatformsHero() {
    01 · JAFX WEB TRADER (the hero feature)
    ============================================================ */
 function WebTraderSection() {
+  const AiOrbs = typeof window !== 'undefined' ? window.JafxAiOrbs : null;
   return (
     <section id="web" style={{ padding: 'clamp(80px, 10vw, 140px) 0', borderTop: '1px solid var(--line)', position: 'relative' }}>
       <div className="wrap">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 60, alignItems: 'end', marginBottom: 56 }}>
+        <div className="platform-section-split platform-section-split--web">
           <div data-reveal>
             <div className="mono" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.18em', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 9, opacity: 0.6 }}>01 · FLAGSHIP</span>
@@ -67,8 +72,15 @@ function WebTraderSection() {
             </p>
           </div>
           <div data-reveal style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-            <a href="trader.html" className="btn btn-primary">Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></a>
-            <a href="ai.html" className="btn btn-ghost">Meet the Copilot</a>
+            <LaunchTerminalCta>Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></LaunchTerminalCta>
+            <a href="ai.html" className="btn btn-ghost web-trader-hero-btn web-trader-hero-btn--copilot">
+              <span className="web-trader-hero-btn__label">Meet the Copilot</span>
+              {AiOrbs ? (
+                <span className="web-trader-hero-btn__orbs" aria-hidden="true">
+                  <AiOrbs />
+                </span>
+              ) : null}
+            </a>
             <div className="mono" style={{ fontSize: 10, color: 'var(--text-3)', letterSpacing: '0.12em', marginTop: 12 }}>● NO INSTALL · WORKS IN ANY BROWSER · MOBILE OPTIMIZED</div>
           </div>
         </div>
@@ -106,14 +118,14 @@ function WebTraderSection() {
         </div>
 
         {/* feature row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, marginTop: 120, border: '1px solid var(--line)', borderRadius: 10, overflow: 'hidden' }}>
+        <div className="platform-web-features">
           {[
             ['Browser-native', 'No install. Sub-second cold start. Auto-syncs across devices.'],
             ['AI in the sidebar', 'Copilot reads your screen, drafts orders, narrates positions.'],
             ['TV-class charts', 'Multi-chart, 38 timeframes, 100+ indicators, drawing toolkit.'],
             ['Mobile-tuned', 'Same engine. Touch-first layout for phones and tablets.'],
           ].map(([t, d], i) => (
-            <div key={t} style={{ padding: 28, borderRight: i < 3 ? '1px solid var(--line)' : 'none', background: 'var(--bg-1)' }}>
+            <div key={t} className="platform-web-features__cell" style={{ padding: 28, background: 'var(--bg-1)' }}>
               <div className="mono" style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.12em' }}>● {String(i + 1).padStart(2, '0')}</div>
               <div className="display" style={{ fontSize: 22, marginTop: 12 }}>{t}</div>
               <p style={{ color: 'var(--text-2)', fontSize: 13, lineHeight: 1.55, marginTop: 8 }}>{d}</p>
@@ -132,8 +144,8 @@ function MT5Section({ id, idx, name, eyebrow, headline, accent, copy, requiremen
   return (
     <section id={id} style={{ padding: 'clamp(80px, 10vw, 130px) 0', borderTop: '1px solid var(--line)', background: bg, position: 'relative' }}>
       <div className="wrap">
-        <div style={{ display: 'grid', gridTemplateColumns: align === 'left' ? '1fr 1.2fr' : '1.2fr 1fr', gap: 60, alignItems: 'center' }}>
-          <div style={{ order: align === 'right' ? 2 : 0 }} data-reveal>
+        <div className={'platform-section-split platform-section-split--mt5 platform-section-split--mt5-' + (align === 'right' ? 'right' : 'left')}>
+          <div className="platform-mt5-copy" style={{ order: align === 'right' ? 2 : 0 }} data-reveal>
             <div className="mono" style={{ fontSize: 10, color: accent, letterSpacing: '0.18em', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 9, opacity: 0.6 }}>{idx}</span>
               <span style={{ width: 24, height: 1, background: accent }}/>
@@ -146,14 +158,9 @@ function MT5Section({ id, idx, name, eyebrow, headline, accent, copy, requiremen
               {copy}
             </p>
             {/* requirements */}
-            <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '1px solid var(--line)', borderRadius: 8, overflow: 'hidden', maxWidth: 480 }}>
+            <div className="platform-mt5-specs">
               {requirements.map(([k, v], i) => (
-                <div key={k} style={{
-                  padding: '14px 16px',
-                  borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none',
-                  borderTop: i >= 2 ? '1px solid var(--line)' : 'none',
-                  background: 'var(--bg-1)'
-                }}>
+                <div key={k} className="platform-mt5-specs__cell">
                   <div className="mono" style={{ fontSize: 9, color: 'var(--text-3)', letterSpacing: '0.12em' }}>{k.toUpperCase()}</div>
                   <div className="mono" style={{ fontSize: 12, color: 'var(--text-0)', marginTop: 6 }}>{v}</div>
                 </div>
@@ -164,7 +171,7 @@ function MT5Section({ id, idx, name, eyebrow, headline, accent, copy, requiremen
               <a href="#" className="btn btn-ghost">{ctaSecondary}</a>
             </div>
           </div>
-          <div style={{ order: align === 'right' ? 1 : 2, display: 'flex', justifyContent: 'center' }} data-reveal>
+          <div className="platform-mt5-mock" style={{ order: align === 'right' ? 1 : 2, display: 'flex', justifyContent: 'center' }} data-reveal>
             {mock}
           </div>
         </div>
@@ -200,21 +207,22 @@ function PlatformCompare() {
             Which one is for <em style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 300 }}>you</em>?
           </h2>
         </div>
-        <div style={{ border: '1px solid var(--line)', borderRadius: 12, overflow: 'hidden', background: 'var(--bg-1)' }} data-reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr repeat(5, 1fr)', borderBottom: '1px solid var(--line)', background: 'var(--bg-2)' }}>
-            <div style={{ padding: '18px 20px' }} className="mono" />
+        <div className="platform-compare-scroll" data-reveal>
+          <div className="platform-compare-matrix" style={{ border: '1px solid var(--line)', borderRadius: 12, overflow: 'hidden', background: 'var(--bg-1)' }}>
+          <div className="platform-compare-matrix__row platform-compare-matrix__row--head">
+            <div className="mono platform-compare-matrix__corner" style={{ padding: '18px 20px' }} />
             {platforms.map((p, i) => (
-              <div key={p} style={{ padding: '18px 12px', textAlign: 'center', borderLeft: '1px solid var(--line)' }}>
+              <div key={p} className="platform-compare-matrix__cell platform-compare-matrix__cell--head" style={{ padding: '18px 12px', textAlign: 'center' }}>
                 <div className="mono" style={{ fontSize: 10, color: i === 0 ? 'var(--accent)' : 'var(--text-1)', letterSpacing: '0.1em', lineHeight: 1.3 }}>{p.toUpperCase()}</div>
                 {i === 0 && <div className="mono" style={{ fontSize: 8, color: 'var(--accent)', marginTop: 4 }}>● FLAGSHIP</div>}
               </div>
             ))}
           </div>
           {rows.map(([label, vals], rowIdx) => (
-            <div key={label} style={{ display: 'grid', gridTemplateColumns: '2fr repeat(5, 1fr)', borderTop: rowIdx === 0 ? 'none' : '1px solid var(--line)' }}>
-              <div style={{ padding: '14px 20px', fontSize: 14, color: 'var(--text-0)' }}>{label}</div>
+            <div key={label} className="platform-compare-matrix__row" data-row-border={rowIdx > 0 ? '1' : undefined}>
+              <div className="platform-compare-matrix__label" style={{ padding: '14px 20px', fontSize: 14, color: 'var(--text-0)' }}>{label}</div>
               {vals.map((v, i) => (
-                <div key={i} style={{ padding: '14px 12px', textAlign: 'center', borderLeft: '1px solid var(--line)' }}>
+                <div key={i} className="platform-compare-matrix__cell" style={{ padding: '14px 12px', textAlign: 'center' }}>
                   {v ? (
                     <span className="mono" style={{ fontSize: 14, color: i === 0 && label.includes('AI') ? 'var(--accent)' : i === 0 ? 'var(--accent)' : 'var(--text-1)' }}>●</span>
                   ) : (
@@ -224,6 +232,7 @@ function PlatformCompare() {
               ))}
             </div>
           ))}
+          </div>
         </div>
         <p style={{ textAlign: 'center', color: 'var(--text-2)', fontSize: 13, marginTop: 24 }} className="mono">
           ALL PLATFORMS · SAME ACCOUNT · SAME BALANCE · SAME LIQUIDITY POOL

@@ -10,7 +10,9 @@ function PlatformPreview() {
         </div>
       </div>
       <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center' }}>
-        <a href="trader.html" className="btn btn-primary">Launch full terminal <span className="btn-arrow" aria-hidden="true">→</span></a>
+        <LaunchTerminalCta>
+          Launch full terminal <span className="btn-arrow" aria-hidden="true">→</span>
+        </LaunchTerminalCta>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, marginTop: 48 }}>
         {[
@@ -451,14 +453,14 @@ function Testimonials() {
 /* ---------- CTA BAND ---------- */
 function CtaBand({ zone = 'execution' }) {
   return (
-    <section className={`zone zone-${zone}`} style={{ position: 'relative', padding: 'clamp(72px, 12vw, 120px) 0', borderTop: '1px solid var(--line)', overflow: 'hidden' }}>
+    <section className={`cta-band zone zone-${zone}`} style={{ position: 'relative', padding: 'clamp(72px, 12vw, 120px) 0', borderTop: '1px solid var(--line)', overflow: 'hidden' }}>
       <div className="wrap" style={{ position: 'relative', textAlign: 'center' }}>
-        <div className="mono" style={{ fontSize: 11, color: 'var(--za)', letterSpacing: '0.2em', marginBottom: 24 }}>● NO CREDIT CARD · 60 SECOND SIGNUP</div>
+        <div className="mono" style={{ fontSize: 11, color: 'var(--action)', letterSpacing: '0.2em', marginBottom: 24 }}>● NO CREDIT CARD · 60 SECOND SIGNUP</div>
         <h2 className="display" style={{ fontSize: 'clamp(38px, 7vw, 96px)', margin: 0, maxWidth: 1100, marginInline: 'auto', lineHeight: 0.95 }}>
           The best time to trade smarter<br/>was yesterday.
         </h2>
         <div className="cta-row" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 44, flexWrap: 'wrap' }}>
-          <a href="trader.html" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: 13 }}>Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></a>
+          <LaunchTerminalCta>Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></LaunchTerminalCta>
           <a href="ai.html" className="btn btn-ghost" style={{ padding: '16px 32px', fontSize: 13 }}>Try AI demo</a>
         </div>
       </div>

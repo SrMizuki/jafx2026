@@ -2,7 +2,7 @@
    Sections: TrustStripFull · MarketsTabbed · SpreadsExecution · PlatformsStrip · WhyJafx
 */
 
-const { useState: useStateB, useEffect: useEffectB, useRef: useRefB, useMemo: useMemoB } = React;
+const { useState: useStateB, useEffect: useEffectB, useLayoutEffect: useLayoutEffectB, useRef: useRefB, useMemo: useMemoB } = React;
 
 /* ============================================================
    1. TRUST STRIP — sits right under hero, small horizontal band
@@ -99,20 +99,217 @@ const MARKETS_DATA = {
   ],
 };
 
+/** Maps ticker codes to filenames under assets/symbols/ (e.g. JP225 → jpn225.svg). */
+const SYMBOL_ICON_SLUG = {
+  JP225: 'jpn225',
+  UKOIL: 'ukoil',
+  USOIL: 'usoil',
+  NGAS: 'natgas',
+};
+
+function symbolIconSlug(code) {
+  const c = String(code).toUpperCase();
+  return SYMBOL_ICON_SLUG[c] || c.toLowerCase();
+}
+
+/** Two slugs for overlapping circular icons (base left, quote right). */
+function pairIconSlugs(sym) {
+  const s = String(sym);
+  if (s.includes('/')) {
+    const [a, b] = s.split('/');
+    return [symbolIconSlug(a), symbolIconSlug(b)];
+  }
+  const u = s.toUpperCase();
+  if (u === 'US500' || u === 'US100' || u === 'US30') return [symbolIconSlug(u), 'usd'];
+  if (u === 'UK100') return ['uk100', 'gbp'];
+  if (u === 'GER40') return ['ger40', 'eur'];
+  if (u === 'FRA40') return ['fra40', 'eur'];
+  if (u === 'JP225') return ['jpn225', 'jpy'];
+  if (u === 'HK50') return ['hk50', 'usd'];
+  if (u === 'UKOIL') return ['ukoil', 'usd'];
+  if (u === 'USOIL') return ['usoil', 'usd'];
+  if (u === 'NGAS') return ['natgas', 'usd'];
+  return [symbolIconSlug(s), 'usd'];
+}
+
+const PAIR_ICON_PX = 32;
+const PAIR_ICON_OVERLAP = 24;
+const PAIR_ICON_COL = '68px';
+/** Trade column: fixed CTA width + gutter from 24h column */
+const MARKETS_TRADE_COL_W = 120;
+const MARKETS_TRADE_24H_GAP = 16;
+const MARKETS_TRADE_COL = `${MARKETS_TRADE_COL_W + MARKETS_TRADE_24H_GAP}px`;
+const PAIR_ICON_GRID = `${PAIR_ICON_COL} 1.12fr 0.92fr 0.92fr 0.92fr 1fr ${MARKETS_TRADE_COL}`;
+
+function PairIconStack({ sym }) {
+  let [left, right] = pairIconSlugs(sym);
+  const dup = left === right;
+  if (dup) right = null;
+  const ring = { boxShadow: '0 0 0 1px var(--line)' };
+  const maskFor = (slug) => ({
+    backgroundColor: 'var(--action)',
+    WebkitMaskImage: `url("assets/symbols/${slug}.svg")`,
+    maskImage: `url("assets/symbols/${slug}.svg")`,
+    WebkitMaskSize: 'contain',
+    maskSize: 'contain',
+    WebkitMaskRepeat: 'no-repeat',
+    maskRepeat: 'no-repeat',
+    WebkitMaskPosition: 'center',
+    maskPosition: 'center',
+  });
+  const faceStyle = {
+    position: 'absolute',
+    top: '50%',
+    width: PAIR_ICON_PX,
+    height: PAIR_ICON_PX,
+    borderRadius: '50%',
+    display: 'block',
+    ...ring,
+  };
+  const w = right != null ? PAIR_ICON_OVERLAP + PAIR_ICON_PX : PAIR_ICON_PX;
+  return (
+    <div
+      style={{ position: 'relative', width: w, height: PAIR_ICON_PX, flexShrink: 0 }}
+      aria-hidden="true"
+    >
+      <div style={{ ...faceStyle, ...maskFor(left), left: 0, transform: 'translateY(-50%)', zIndex: 1, opacity: 0.75 }} />
+      {right != null && (
+        <div style={{ ...faceStyle, ...maskFor(right), left: PAIR_ICON_OVERLAP, transform: 'translateY(-50%)', zIndex: 2, opacity: 0.5 }} />
+      )}
+    </div>
+  );
+}
+
+/** Demo-only CTA copy from 24h direction + row — not live advice. */
+function webTraderCtaLabel(chg, rowIndex) {
+  if (chg === 0) return 'Open chart';
+  const up = chg > 0;
+  const alt = rowIndex % 2 === 1;
+  if (up) return alt ? 'Buy lean' : 'Open long';
+  return alt ? 'Sell lean' : 'Open short';
+}
+
 function MarketsTabbed() {
-  const tabs = Object.keys(MARKETS_DATA);
+  const AiOrbs = typeof window !== 'undefined' ? window.JafxAiOrbs : null;
+  const tabs = useMemoB(() => Object.keys(MARKETS_DATA), []);
   const [tab, setTab] = useStateB(tabs[0]);
   const [tick, setTick] = useStateB(0);
+  const [showSphere, setShowSphere] = useStateB(() => typeof window !== 'undefined' && window.innerWidth >= 720);
+  const sphereMountRef = useRefB(null);
+  const tabNavRef = useRefB(null);
+  const [tabPill, setTabPill] = useStateB({ left: 0, top: 0, width: 0, height: 0 });
+
+  useLayoutEffectB(() => {
+    const nav = tabNavRef.current;
+    if (!nav) return undefined;
+    const sync = () => {
+      const idx = tabs.indexOf(tab);
+      const btn = nav.querySelector(`button[data-market-tab="${idx}"]`);
+      if (!btn) return;
+      setTabPill({
+        left: btn.offsetLeft,
+        top: btn.offsetTop,
+        width: btn.offsetWidth,
+        height: btn.offsetHeight,
+      });
+    };
+    sync();
+    let ro;
+    if (typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(sync);
+      ro.observe(nav);
+    }
+    window.addEventListener('resize', sync);
+    return () => {
+      window.removeEventListener('resize', sync);
+      if (ro) ro.disconnect();
+    };
+  }, [tab, tabs]);
+
   useEffectB(() => {
     const id = setInterval(() => setTick(t => t + 1), 1500);
     return () => clearInterval(id);
   }, []);
+
+  useEffectB(() => {
+    const mq = window.matchMedia('(min-width: 720px)');
+    const sync = () => setShowSphere(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
+  useEffectB(() => {
+    if (!showSphere) return undefined;
+    const el = sphereMountRef.current;
+    if (!el || !window.JAFXMarketsSphere) return undefined;
+    const ctrl = window.JAFXMarketsSphere.mount(el);
+    return () => ctrl.destroy();
+  }, [showSphere]);
+
   const data = MARKETS_DATA[tab];
   return (
-    <section style={{ padding: 'clamp(80px, 10vw, 140px) 0', borderBottom: '1px solid var(--line)' }}>
-      <div className="wrap">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 24, marginBottom: 48 }}>
-          <div>
+    <section style={{ padding: 'clamp(80px, 10vw, 140px) 0', borderBottom: '1px solid var(--line)', position: 'relative', overflow: 'visible' }}>
+      <div className="wrap" style={{ position: 'relative', overflow: 'visible' }}>
+        {showSphere ? (
+          <div
+            className="jafx-markets-sphere-wrap"
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              zIndex: 0,
+              top: '-5%',
+              right: 0,
+              width: '50vw',
+              aspectRatio: '1 / 1',
+              pointerEvents: 'auto',
+              opacity: 0.5,
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '92%',
+                height: '92%',
+                borderRadius: '50%',
+                zIndex: 0,
+                pointerEvents: 'none',
+                background:
+                  'radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--accent) 50%, transparent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 42%, transparent 68%)',
+                filter: 'blur(52px)',
+                opacity: 0.9,
+              }}
+            />
+            <div
+              ref={sphereMountRef}
+              className="jafx-markets-sphere-mount"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                zIndex: 1,
+                pointerEvents: 'auto',
+                opacity: 0.5,
+              }}
+            />
+          </div>
+        ) : null}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            isolation: 'isolate',
+            pointerEvents: 'none',
+          }}
+        >
+          <div
+            style={{
+              marginBottom: 48,
+              paddingRight: showSphere ? 'clamp(0px, min(48vw, 720px), 720px)' : 0,
+            }}
+          >
             <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--accent)', letterSpacing: '0.2em', marginBottom: 16 }}>
               <span className="live-dot"/>&nbsp;&nbsp;MARKETS
             </div>
@@ -123,36 +320,136 @@ function MarketsTabbed() {
               FX, indices, metals, energies, crypto. Same terminal, same AI, same raw spreads. One account, one login.
             </p>
           </div>
-        </div>
-        {/* Tabs */}
-        <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--line)', marginBottom: 0, overflowX: 'auto' }}>
-          {tabs.map(t => (
-            <button key={t} onClick={() => setTab(t)} className="mono" style={{
-              padding: '14px 22px',
-              background: 'transparent',
-              border: 'none',
-              borderBottom: tab === t ? '2px solid var(--accent)' : '2px solid transparent',
-              color: tab === t ? 'var(--text-0)' : 'var(--text-2)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 11,
-              letterSpacing: '0.12em',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'color 0.15s ease',
-            }}>
-              {t.toUpperCase()}
-              <span style={{ marginLeft: 8, color: 'var(--text-3)', fontSize: 9 }}>{MARKETS_DATA[t].length}</span>
-            </button>
-          ))}
+        {/* Tabs — sliding pill (inspired by anchored tabs; React-driven for state) */}
+        <div
+          style={{
+            pointerEvents: 'auto',
+            paddingBottom: 16,
+            marginBottom: 0,
+            borderBottom: '1px solid var(--line)',
+          }}
+        >
+          <div
+            ref={tabNavRef}
+            className="mono"
+            role="tablist"
+            aria-label="Market categories"
+            style={{
+              position: 'relative',
+              display: 'inline-flex',
+              flexDirection: 'row',
+              flexWrap: 'nowrap',
+              alignItems: 'stretch',
+              gap: 4,
+              padding: 5,
+              maxWidth: '100%',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid var(--line)',
+              background: 'var(--bg-2)',
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            {tabPill.width > 0 ? (
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: tabPill.left,
+                  top: tabPill.top,
+                  width: tabPill.width,
+                  height: tabPill.height,
+                  zIndex: 0,
+                  pointerEvents: 'none',
+                  borderRadius: 'calc(var(--radius-lg) - 4px)',
+                  background: 'color-mix(in srgb, var(--accent) 24%, var(--bg-3))',
+                  boxShadow: '0 0 0 1px color-mix(in srgb, var(--accent) 32%, transparent), inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent)',
+                  transition:
+                    'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
+              />
+            ) : null}
+            {tabs.map((t, tabIdx) => {
+              const active = tab === t;
+              return (
+                <button
+                  key={t}
+                  type="button"
+                  role="tab"
+                  data-market-tab={tabIdx}
+                  aria-selected={active}
+                  onClick={() => setTab(t)}
+                  className="mono"
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    padding: '10px 16px',
+                    border: 'none',
+                    borderRadius: 'calc(var(--radius-lg) - 6px)',
+                    background: 'transparent',
+                    color: active ? 'var(--text-0)' : 'var(--text-2)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 12,
+                    fontWeight: active ? 600 : 500,
+                    letterSpacing: '0.07em',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    flex: '0 0 auto',
+                    transition: 'color 0.2s ease',
+                  }}
+                >
+                  {t.toUpperCase()}
+                  <span
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 10,
+                      fontWeight: 600,
+                      letterSpacing: '0.04em',
+                      color: 'var(--text-2)',
+                      padding: '2px 8px',
+                      borderRadius: 999,
+                      background: 'color-mix(in srgb, var(--text-0) 6%, transparent)',
+                    }}
+                  >
+                    {MARKETS_DATA[t].length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
         {/* Table */}
-        <div style={{ background: 'var(--bg-1)', borderLeft: '1px solid var(--line)', borderRight: '1px solid var(--line)' }}>
-          <div className="mono" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1.2fr', padding: '12px 24px', fontSize: 9, letterSpacing: '0.12em', color: 'var(--text-3)', borderBottom: '1px solid var(--line)' }}>
-            <span>SYMBOL</span>
-            <span style={{ textAlign: 'right' }}>BID</span>
-            <span style={{ textAlign: 'right' }}>ASK</span>
-            <span style={{ textAlign: 'right' }}>SPREAD</span>
-            <span style={{ textAlign: 'right' }}>24H</span>
+        <div style={{
+          pointerEvents: 'auto',
+          background: 'var(--bg-1)',
+          border: '1px solid var(--line)',
+          borderRadius: 'var(--radius-lg)',
+          overflow: 'hidden',
+        }}>
+          <div
+            className="mono"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: PAIR_ICON_GRID,
+              alignItems: 'center',
+              padding: '14px 24px',
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--text-1)',
+              borderBottom: '1px solid var(--line-strong)',
+              background: 'color-mix(in srgb, var(--bg-2) 88%, var(--bg-1))',
+              userSelect: 'none',
+            }}
+          >
+            <span />
+            <span style={{ color: 'var(--text-0)' }}>Symbol</span>
+            <span style={{ textAlign: 'right' }}>Bid</span>
+            <span style={{ textAlign: 'right' }}>Ask</span>
+            <span style={{ textAlign: 'right' }}>Spread</span>
+            <span style={{ textAlign: 'right' }}>24h</span>
+            <span style={{ textAlign: 'right', paddingLeft: MARKETS_TRADE_24H_GAP }}>Trade</span>
           </div>
           {data.map((row, i) => {
             const [sym, base, chg, spread] = row;
@@ -166,12 +463,13 @@ function MarketsTabbed() {
             const flash = flashKey < 1;
             return (
               <div key={sym} className="mono" style={{
-                display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1.2fr',
+                display: 'grid', gridTemplateColumns: PAIR_ICON_GRID, alignItems: 'center',
                 padding: '12px 24px', fontSize: 12,
                 borderBottom: i < data.length - 1 ? '1px solid var(--line)' : 'none',
                 background: flash ? 'rgba(0,229,153,0.03)' : 'transparent',
                 transition: 'background 0.4s ease',
               }}>
+                <PairIconStack sym={sym} />
                 <span style={{ color: 'var(--text-0)', fontWeight: 500 }}>{sym}</span>
                 <span style={{ textAlign: 'right', color: 'var(--red)' }}>{bid.toFixed(dec)}</span>
                 <span style={{ textAlign: 'right', color: 'var(--accent)' }}>{ask.toFixed(dec)}</span>
@@ -179,6 +477,21 @@ function MarketsTabbed() {
                 <span style={{ textAlign: 'right', color: up ? 'var(--accent)' : 'var(--red)' }}>
                   {up ? '▲' : '▼'} {Math.abs(chg).toFixed(2)}%
                 </span>
+                <div style={{ textAlign: 'right', display: 'flex', justifyContent: 'flex-end', paddingLeft: MARKETS_TRADE_24H_GAP }}>
+                  <a
+                    href={`trader.html?pair=${encodeURIComponent(sym)}`}
+                    className="markets-trade-cta"
+                    data-trade-bias={chg === 0 ? 'flat' : up ? 'long' : 'short'}
+                    title={`Opens JAFX Terminal on ${sym} when you are signed in. AI routing can follow later.`}
+                  >
+                    <span>{webTraderCtaLabel(chg, i)}</span>
+                    {AiOrbs ? (
+                      <span className="markets-trade-cta__orbs">
+                        <AiOrbs />
+                      </span>
+                    ) : null}
+                  </a>
+                </div>
               </div>
             );
           })}
@@ -188,6 +501,7 @@ function MarketsTabbed() {
             </span>
             <a href="trader.html" className="mono" style={{ fontSize: 11, color: 'var(--accent)', textDecoration: 'none', letterSpacing: '0.1em' }}>OPEN TERMINAL →</a>
           </div>
+        </div>
         </div>
       </div>
     </section>

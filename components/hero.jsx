@@ -44,7 +44,7 @@ function HeroNeural({ meshVariation = 'candles' }) {
           A co-pilot that reads the market, sizes your risk, and journals every trade. You pull the trigger. JAFX handles the rest.
         </p>
         <div className="cta-row" data-reveal data-reveal-delay="0.35" style={{ display: 'flex', gap: 12, marginTop: 40, flexWrap: 'wrap' }}>
-          <a href="trader.html" className="btn btn-primary">Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></a>
+          <LaunchTerminalCta>Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></LaunchTerminalCta>
           <a href="ai.html" className="btn btn-ghost">Try the AI demo</a>
         </div>
         <div className="grid-4" data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, marginTop: 'clamp(48px, 8vw, 96px)', borderTop: '1px solid var(--line)', paddingTop: 32 }}>
@@ -114,7 +114,7 @@ function HeroTerminal({ meshVariation = 'candles' }) {
               Every tick analyzed. Every trade reviewed. Every risk calculated. The first forex broker built around intelligence, not volume.
             </p>
             <div className="cta-row" data-reveal data-reveal-delay="0.32" style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
-              <a href="trader.html" className="btn btn-primary">Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></a>
+              <LaunchTerminalCta>Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></LaunchTerminalCta>
               <a href="ai.html" className="btn btn-ghost">Watch 90s demo</a>
             </div>
           </div>
@@ -200,7 +200,7 @@ function HeroSplit({ meshVariation = 'mesh' }) {
               Purpose-built for retail traders who want an institutional-grade edge. No noise. No gimmicks. Just a better trader, faster.
             </p>
             <div className="cta-row" data-reveal data-reveal-delay="0.32" style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
-              <a href="trader.html" className="btn btn-primary">Launch terminal</a>
+              <LaunchTerminalCta>Launch terminal <span className="btn-arrow" aria-hidden="true">→</span></LaunchTerminalCta>
               <a href="ai.html" className="btn btn-ghost">Demo <span className="btn-arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
@@ -220,25 +220,26 @@ function MiniTerminal({ big = false }) {
   const chatScenarios = useMemoH(() => ([
     {
       q: 'Where is my best long entry if momentum pulls back?',
-      thinking: 'Checking structure, ATR bands, and London session volatility...',
+      thinkingLine: 'Scanning pullback structure now',
       a: 'Best entry zone is 1.0838-1.0842 on a retest. Invalidation below 1.0829. If filled, target 1.0890 for ~2.3R.',
     },
     {
       q: 'Should I enter now or wait for confirmation?',
-      thinking: 'Comparing breakout quality against false-break behavior from the last 20 sessions...',
+      thinkingLine: 'Weighing breakout versus fakeout',
       a: 'Wait for a 5m close above 1.0851 plus hold. If price rejects there, skip. Current edge is better on confirmation than immediate market entry.',
     },
     {
       q: 'How should I size this trade on a $5k account?',
-      thinking: 'Computing risk-per-trade, stop distance, and pip value...',
+      thinkingLine: 'Sizing risk and pip value',
       a: 'At 0.5% risk ($25) and a 16-pip stop, size is about 0.15 lots. Keep max portfolio USD exposure under your configured cap.',
     },
     {
       q: 'What is the key risk in the next hour?',
-      thinking: 'Scanning calendar and recent reaction stats for high-impact events...',
+      thinkingLine: 'Cross-checking news and volatility',
       a: 'Main risk is event-driven spread expansion. If volatility spikes, widen stop only with smaller size; otherwise wait for post-news reclaim.',
     },
   ]), []);
+  const AiOrbs = typeof window !== 'undefined' ? window.JafxAiOrbs : null;
   const [chatIdx, setChatIdx] = useStateH(0);
   const [phase, setPhase] = useStateH('typing'); // typing -> ready -> thinking -> answering
   const [inputText, setInputText] = useStateH('');
@@ -304,13 +305,13 @@ function MiniTerminal({ big = false }) {
       setSubmittedQuestion(activeChat.q);
       setInputText('');
       setPhase('thinking');
-    }, 550);
+    }, 920);
     return () => clearTimeout(submitDelay);
   }, [phase, activeChat.q]);
 
   useEffectH(() => {
     if (phase !== 'thinking') return;
-    const thinkDelay = setTimeout(() => setPhase('answering'), 1050);
+    const thinkDelay = setTimeout(() => setPhase('answering'), 2200);
     return () => clearTimeout(thinkDelay);
   }, [phase]);
 
@@ -328,7 +329,7 @@ function MiniTerminal({ big = false }) {
   useEffectH(() => {
     const rotate = setInterval(() => {
       setChatIdx(prev => (prev + 1) % chatScenarios.length);
-    }, 9800);
+    }, 11800);
     return () => clearInterval(rotate);
   }, [chatScenarios.length]);
 
@@ -459,25 +460,27 @@ function MiniTerminal({ big = false }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0, alignItems: 'flex-start' }}>
             <div style={{ width: 22, height: 22, borderRadius: '50%', margin: 12, background: 'var(--action)', color: '#000', display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>AI</div>
             <div style={{ flex: 1, minWidth: 0, width: '100%' }}>
-              <div style={{ borderRadius: '0 0 8px 8px', background: 'linear-gradient(to top, rgba(5, 8, 10, 0.66), rgba(5, 8, 10, 0))', minHeight: 160, height: 160, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <div style={{ borderRadius: '0 0 8px 8px', background: 'linear-gradient(to top, rgba(5, 8, 10, 0.66), rgba(5, 8, 10, 0))', minHeight: 180, height: 180, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                 <div style={{ flex: 1, minHeight: 0, padding: '8px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 6, overflow: 'hidden' }}>
                   {(phase === 'thinking' || phase === 'answering') && (
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', opacity: 1, transform: 'translateY(0)', transition: 'opacity .22s ease, transform .22s ease' }}>
-                      <div className="mono" style={{ fontSize: 12, color: '#000', background: 'var(--action)', borderRadius: 5, padding: '5px 8px', maxWidth: '90%', lineHeight: 1.4 }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', opacity: 1, transform: 'translateY(0)', transition: 'opacity .52s ease, transform .52s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                      <div className="mono mini-term-ai-question">
                         {submittedQuestion}
                       </div>
                     </div>
                   )}
                   {(phase === 'thinking' || phase === 'answering') && (
-                    <div style={{ display: 'flex', justifyContent: 'flex-start', opacity: 1, transform: 'translateY(0)', transition: 'opacity .22s ease, transform .22s ease' }}>
-                      <div className="mono" style={{ fontSize: 12, color: 'var(--text-1)', background: 'var(--bg-1)', border: '1px solid var(--line)', borderRadius: 5, padding: '6px 8px', maxWidth: '92%', lineHeight: 1.45 }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-start', opacity: 1, transform: 'translateY(0)', transition: 'opacity .52s ease, transform .52s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                      <div
+                        className={'mono mini-term-ai-bubble' + (phase === 'thinking' ? ' mini-term-ai-bubble--thinking' : '')}
+                      >
                         {phase === 'thinking' ? (
-                          <span style={{ color: 'var(--text-2)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                            <span className="live-dot" style={{ width: 5, height: 5 }}></span>
-                            {activeChat.thinking}
+                          <span className="mini-term-ai-thinking-wrap" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                            {AiOrbs ? <AiOrbs className="mini-term-ai-orbs" /> : <span className="live-dot" style={{ width: 5, height: 5 }} />}
+                            <span className="mini-term-ai-thinking-line">{activeChat.thinkingLine}</span>
                           </span>
                         ) : (
-                          <span>
+                          <span style={{ transition: 'opacity .4s ease' }}>
                             {streamedAnswer}
                             <span style={{ color: 'var(--action)', opacity: 0.85 }}>|</span>
                           </span>

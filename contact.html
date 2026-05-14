@@ -43,12 +43,12 @@ function ContactHero() {
     <section className="zone zone-momentum" style={{ padding: 'clamp(80px, 12vw, 140px) 0 clamp(40px, 6vw, 80px)', position: 'relative', overflow: 'hidden' }}>
       <NeuralBg/>
       <div className="wrap" style={{ position: 'relative', textAlign: 'center' }}>
-        <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--za)', letterSpacing: '0.2em', marginBottom: 24 }}>
-          <span className="live-dot" style={{ background: 'var(--za)', boxShadow: '0 0 10px var(--za)' }}/>&nbsp;&nbsp;CONTACT
+        <div className="mono" data-reveal style={{ fontSize: 11, color: 'var(--action)', letterSpacing: '0.2em', marginBottom: 24 }}>
+          <span className="live-dot" style={{ background: 'var(--action)', boxShadow: '0 0 10px var(--action)' }}/>&nbsp;&nbsp;CONTACT
         </div>
         <h1 className="display" data-reveal style={{ fontSize: 'clamp(56px, 9vw, 128px)', margin: 0, lineHeight: 0.95, letterSpacing: '-0.02em' }}>
           Talk to a<br/>
-          <span style={{ color: 'var(--za)', fontStyle: 'italic', fontWeight: 300 }}>real human.</span>
+          <span style={{ color: 'var(--action)', fontStyle: 'italic', fontWeight: 300 }}>real human.</span>
         </h1>
         <p data-reveal style={{ color: 'var(--text-1)', fontSize: 'clamp(16px, 1.4vw, 20px)', lineHeight: 1.55, maxWidth: 620, margin: '32px auto 0' }}>
           Live chat is on the platform 24/5. For everything else — partnerships, press, institutional, or just a question about your account — pick a channel below.
@@ -63,7 +63,7 @@ function ContactChannels() {
     { tag: 'TRADING SUPPORT', title: 'Live chat in the terminal', sub: '24 / 5 · median first response 38 seconds.', cta: 'Open the chat', href: 'trader.html', accent: 'var(--accent)' },
     { tag: 'EMAIL', title: 'support@jafx.co', sub: 'Account, deposits, KYC, technical issues. Replies under 2 hours.', cta: 'Email support', href: 'mailto:support@jafx.co', accent: 'var(--accent)' },
     { tag: 'PARTNERSHIPS', title: 'partners@jafx.co', sub: 'IB, white-label, liquidity, and tech integrations.', cta: 'Reach the partner desk', href: 'mailto:partners@jafx.co', accent: 'var(--accent)' },
-    { tag: 'PRESS', title: 'press@jafx.co', sub: 'Embargoed releases, interviews, and analyst briefings.', cta: 'Email press', href: 'mailto:press@jafx.co', accent: '#ffb24a' },
+    { tag: 'PRESS', title: 'press@jafx.co', sub: 'Embargoed releases, interviews, and analyst briefings.', cta: 'Email press', href: 'mailto:press@jafx.co', accent: 'var(--accent)' },
   ];
   return (
     <section style={{ padding: 'clamp(40px, 6vw, 80px) 0 clamp(60px, 8vw, 100px)', borderTop: '1px solid var(--line)' }}>
@@ -133,13 +133,13 @@ function ContactForm() {
             ) : (
               <>
                 <FormRow label="NAME">
-                  <input type="text" required style={inputStyle}/>
+                  <input type="text" required className="jafx-field"/>
                 </FormRow>
                 <FormRow label="EMAIL">
-                  <input type="email" required style={inputStyle}/>
+                  <input type="email" required className="jafx-field"/>
                 </FormRow>
                 <FormRow label="REASON">
-                  <select style={inputStyle} defaultValue="support">
+                  <select className="jafx-field" defaultValue="support">
                     <option value="support">Trading support</option>
                     <option>Account / KYC</option>
                     <option>Partnership</option>
@@ -149,10 +149,10 @@ function ContactForm() {
                   </select>
                 </FormRow>
                 <FormRow label="ACCOUNT # (OPTIONAL)">
-                  <input type="text" placeholder="e.g. 142830" style={inputStyle}/>
+                  <input type="text" placeholder="e.g. 142830" className="jafx-field"/>
                 </FormRow>
                 <FormRow label="MESSAGE">
-                  <textarea rows={6} required style={{ ...inputStyle, resize: 'vertical', fontFamily: 'var(--font-body)' }}/>
+                  <textarea rows={6} required className="jafx-field jafx-field--prose"/>
                 </FormRow>
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: 8 }}>
                   Send message <span className="btn-arrow" aria-hidden="true">→</span>
@@ -168,18 +168,6 @@ function ContactForm() {
     </section>
   );
 }
-
-const inputStyle = {
-  width: '100%',
-  background: 'var(--bg-0)',
-  border: '1px solid var(--line)',
-  color: 'var(--text-0)',
-  padding: '12px 14px',
-  borderRadius: 6,
-  fontFamily: 'var(--font-mono)',
-  fontSize: 13,
-  outline: 'none',
-};
 
 function FormRow({ label, children }) {
   return (

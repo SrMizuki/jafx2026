@@ -382,4 +382,30 @@ function Section({ eyebrow, title, intro, children, dense = false, zone = null }
   );
 }
 
-Object.assign(window, { Nav, Logo, LiveTicker, Sparkline, Candles, genCandles, genSpark, Footer, Section });
+/* ---------- AI twin orbs (action + brand) — reuse anywhere ---------- */
+function JafxAiOrbs({ className = '' }) {
+  return (
+    <span className={'jafx-ai-orbs ' + className} aria-hidden="true">
+      <span className="jafx-ai-orbs__scene">
+        <span className="jafx-ai-orbs__fuse" />
+        <span className="jafx-ai-orbs__orb jafx-ai-orbs__orb--a" />
+        <span className="jafx-ai-orbs__orb jafx-ai-orbs__orb--b" />
+      </span>
+    </span>
+  );
+}
+
+/** Primary CTA to the web terminal (plain label + arrow; Copilot keeps hover orbs separately). */
+function LaunchTerminalCta({ className = '', style, href = 'trader.html', children }) {
+  return (
+    <a
+      href={href}
+      className={'btn btn-primary web-trader-hero-btn web-trader-hero-btn--terminal' + (className ? ' ' + className : '')}
+      style={style}
+    >
+      {children}
+    </a>
+  );
+}
+
+Object.assign(window, { Nav, Logo, LiveTicker, Sparkline, Candles, genCandles, genSpark, Footer, Section, JafxAiOrbs, LaunchTerminalCta });
